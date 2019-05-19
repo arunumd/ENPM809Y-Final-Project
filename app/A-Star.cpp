@@ -10,15 +10,15 @@
 #include "../include/A-Star.h"
 #include "../include/MobileRobot_FSM.h"
 
-int AStar::GetLength() const {
+int Maze::GetLength() const {
     return length;
 }
 
-int AStar::GetWidth() const {
+int Maze::GetWidth() const {
     return width;
 }
 
-void AStar::ModifyMazePosition(int x, int y, char c) {
+void Maze::ModifyMazePosition(int x, int y, char c) {
     if (grid_[y][x] == '#') {
         std::cout << "Modify maze failed, position blocked!" << std::endl;
         return;
@@ -26,24 +26,17 @@ void AStar::ModifyMazePosition(int x, int y, char c) {
     grid_[y][x] = c;
 }
 
-char AStar::GetMazePosition(int x, int y) const {
+char Maze::GetMazePosition(int x, int y) const {
     return char(grid_[y][x]);
 }
 
-bool AStar::CanMove(const int &x, const int &y) const {
-    if (grid_[y][x] == '#')
-        return false;
-    else
-        return true;
-}
-
-void AStar::SetStartGoal(const int &start_x, const int &start_y,
+void Maze::SetStartGoal(const int &start_x, const int &start_y,
                          const int &goal_x, const int &goal_y) {
     start_ = std::make_pair(start_x, start_y);
     goal_ = std::make_pair(goal_x, goal_y);
 }
 
-void AStar::ShowMaze() const {
+void Maze::ShowMaze() const {
     std::cout << "\n\n\n";
     for (int i = width - 1; i >= 0; i--) {
         if (i >= 10)
@@ -66,43 +59,41 @@ void AStar::ShowMaze() const {
     std::cout << "\n\n\n";
 }
 
-std::pair<int, int> AStar::North(const std::pair<int, int> node) const {
+std::pair<int, int> Maze::North(const std::pair<int, int> &node) const {
     return std::make_pair(node.first, node.second - 1);
 }
 
-std::pair<int, int> AStar::East(const std::pair<int, int> node) const {
+std::pair<int, int> Maze::East(const std::pair<int, int> &node) const {
     return std::make_pair(node.first + 1, node.second);
 }
 
-std::pair<int, int> AStar::West(const std::pair<int, int> node) const {
+std::pair<int, int> Maze::West(const std::pair<int, int> &node) const {
     return std::make_pair(node.first - 1, node.second);
 }
 
-std::pair<int, int> AStar::South(const std::pair<int, int> node) const {
+std::pair<int, int> Maze::South(const std::pair<int, int> &node) const {
     return std::make_pair(node.first, node.second + 1);
 }
 
-const double AStar::CalculateDistance(std::pair<int, int> current_node) const {
+const double Maze::CalculateDistance(const std::pair<int, int> &current_node) const {
     return std::sqrt(std::pow(current_node.first - goal_.first, 2) +
                      std::pow(current_node.second - goal_.second, 2));
 }
 
-bool AStar::IsNotObstacle(std::pair<int, int> node) const {
-    if (grid_[node.second][node.first] == '#')
-        return false;
-    else
-        return true;
+bool Maze::IsNotObstacle(const std::pair<int, int> &node) const {
+    return grid_[node.second][node.first] != '#' &&
+           grid_[node.second][node.first] != 'p' &&
+           grid_[node.second][node.first] != 'b' &&
+           grid_[node.second][node.first] != 'w' &&
+           grid_[node.second][node.first] != 't';
 }
 
-bool AStar::IsWithinRegion(std::pair<int, int> node) const {
-    if (node.first >= 0 && node.first <= 45 &&
-        node.second >= 0 && node.second <= 30)
-        return true;
-    else
-        return false;
+bool Maze::IsWithinRegion(const std::pair<int, int> &node) const {
+    return node.first >= 0 && node.first <= 45 &&
+           node.second >= 0 && node.second <= 30;
 }
 
-const int AStar::TakeDecision1(const std::pair<int, int> &new_node,
+const int Maze::TakeDecision1(const std::pair<int, int> &new_node,
                                const double &cost_g,
                                ListInfo &info,
                                const std::pair<int, int> &parent_node) {
@@ -123,7 +114,7 @@ const int AStar::TakeDecision1(const std::pair<int, int> &new_node,
         return -1;
 }
 
-const int AStar::TakeDecision2(const std::pair<int, int> &new_node,
+const int Maze::TakeDecision2(const std::pair<int, int> &new_node,
                                const double &cost_g,
                                ListInfo &info,
                                const std::pair<int, int> &parent_node) {
@@ -181,7 +172,7 @@ const int AStar::TakeDecision2(const std::pair<int, int> &new_node,
     return -1;
 }
 
-int AStar::Action() {
+int Maze::Action() {
     // Initialize cost g, cost h, total cost, node no and parent no for root node
     double cost_h;
     double cost_g = 0;
@@ -254,10 +245,9 @@ int AStar::Action() {
     return 1;
 }
 
-void AStar::PlotTrajectory(char path_icon) {
+void Maze::PlotTrajectory(const char &path_icon) {
     int status = Action();
     if (status == 1) {
-        //        auto board = grid_;
         std::pair<int, int> node = goal_;
         std::pair<int, int> parent = closed_list_.find(node)->second.parent;
         while (parent != node) {
@@ -271,7 +261,7 @@ void AStar::PlotTrajectory(char path_icon) {
     }
 }
 
-void AStar::BuildStack(const std::shared_ptr<MobileRobot> &robot_in_maze) {
+void Maze::BuildStack(const std::shared_ptr<MobileRobot> &robot_in_maze) {
     int status = Action();
     if (status == 1) {
         std::pair<int, int> node = goal_;

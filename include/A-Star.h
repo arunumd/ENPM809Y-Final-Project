@@ -5,7 +5,7 @@
  * @author     Qidi Xu
  * @author     Hongyang Jiang
  * @date       04/27/2019
- * @brief      The file A-Star.h contains the header declarations for AStar
+ * @brief      The file A-Star.h contains the header declarations for Maze
  *             class. The class will be used for implementation of A-Star
  *             Algorithm in Final Project
  * @license    MIT License
@@ -53,16 +53,16 @@ struct ListInfo {
 };
 
 /*
- * @brief The AStar class contains the search based A* navigation algorithm
+ * @brief The Maze class contains the search based A* navigation algorithm
  * for solving our path finding problem. The algorithm accepts a start position
  * and goal position and finds a shortest path. The complexity of our algorithm
  * is O(log n) because we use only one for loop to iterate through entries of
  * priority list_. The algorithm finds the shortest path very quick
  */
-class AStar {
+class Maze {
 public:
     /* @brief  Default constructor  */
-    AStar() : grid_{{"######################  ######################",
+    Maze() : grid_{{"######################  ######################",
                             "#        #           #  #                    #",
                             "#  ####  #  #######  #  ##########  #######  #",
                             "#  #     #  #        #        #     #     #  #",
@@ -96,18 +96,10 @@ public:
               start_{std::make_pair(-1, -1)}, goal_{std::make_pair(-1, -1)} {}
 
     /* @brief Default destructor*/
-    ~AStar() = default;
+    ~Maze() = default;
 
     /*
-	@brief Check if node (x,y) is wall
-	@param x - x coordinate of node
-	@param y - y coordinate of node
-	@return true if node can be moved to, false if node is a wall
-	*/
-    bool CanMove(const int&, const int&) const;
-
-    /*
-	@brief Visualized the AStar by print it out on console
+	@brief Visualized the Maze by print it out on console
 	*/
     void ShowMaze() const;
 
@@ -148,28 +140,28 @@ public:
 	@param node - coordinate of current node
 	@return next node location
 	*/
-    std::pair<int, int> North(std::pair<int, int> node) const;
+    std::pair<int, int> North(const std::pair<int, int> &node) const;
 
     /*
 	@brief Get next node location given current node location when go right
 	@param node - coordinate of current node
 	@return next node location
 	*/
-    std::pair<int, int> East(std::pair<int, int> node) const;
+    std::pair<int, int> East(const std::pair<int, int> &node) const;
 
     /*
 	@brief Get next node location given current node location when go left
 	@param node - coordinate of current node
 	@return next node location
 	*/
-    std::pair<int, int> West(std::pair<int, int> node) const;
+    std::pair<int, int> West(const std::pair<int, int> &node) const;
 
     /*
 	@brief Get next node location given current node location when go down
 	@param node - coordinate of current node
 	@return next node location
 	*/
-    std::pair<int, int> South(std::pair<int, int> node) const;
+    std::pair<int, int> South(const std::pair<int, int> &node) const;
 
     /*
 	@brief make decision for initial move since there is no restriction from
@@ -214,27 +206,27 @@ public:
 	@param current_node - coordinate of current node
 	@return the euclidean distance between given current node and goal node
 	*/
-    const double CalculateDistance(std::pair<int, int> current_node) const;
+    const double CalculateDistance(const std::pair<int, int> &current_node) const;
 
     /*
 	@brief check if given node is not an obstacle
 	@param node - coordinate of node to be checked
 	@return false if the node is a wall, true if else
 	*/
-    bool IsNotObstacle(std::pair<int, int> node) const;
+    bool IsNotObstacle(const std::pair<int, int> &node) const;
 
     /*
 	@brief check if given node is within the maze
 	@param node - coordinate of node to be checked
 	@return false if the node is within the maze, true if else
 	*/
-    bool IsWithinRegion(std::pair<int, int> node) const;
+    bool IsWithinRegion(const std::pair<int, int> &node) const;
 
     /*
 	@brief Plot the path yield from A* algorithm
 	@param path_icon - - or + for tracked or wheeled robots
 	*/
-    void PlotTrajectory(char path_icon);
+    void PlotTrajectory(const char &path_icon);
 
     /*
 	@brief Get the length of the maze.

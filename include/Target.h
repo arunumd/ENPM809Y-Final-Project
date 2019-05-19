@@ -3,7 +3,7 @@
  * @author      Arun Kumar Devarajulu
  * @author      Zuyang Cao
  * @author      Qidi Xu
- * @author	    Hongyang Jiang
+ * @author      Hongyang Jiang
  * @date        05/07/2019
  * @brief       The file Target.h contains the header declarations for Target
  *              class. The class will be used for implementation of user interface,
@@ -21,7 +21,7 @@
  *
  *              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *              IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *              FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *              FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
  *              AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  *              LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *              OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
@@ -107,13 +107,13 @@ private:
     Location bottle;
 
     /* Initialize a temporary maze*/
-    AStar tempMaze;
+    Maze tempMaze;
 
-    /* Create a copy of AStar class for wheeled robot*/
-    AStar wheeledMaze;
+    /* Create a copy of Maze class for wheeled robot*/
+    Maze wheeledMaze;
 
-    /* Create a copy of AStar class for tracked robot*/
-    AStar trackedMaze;
+    /* Create a copy of Maze class for tracked robot*/
+    Maze trackedMaze;
 
     /* Character literal for plate*/
     char wheeled_target = 'p';

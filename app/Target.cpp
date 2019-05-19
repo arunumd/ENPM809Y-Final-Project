@@ -1,4 +1,4 @@
-// Classes Target and AStar Start
+// Classes Target and Maze Start
 #include <array>
 #include <cmath>
 #include <iostream>
@@ -15,7 +15,7 @@ void Target::AssignLocations(std::array<Location *, 4> &palette,
             palette[index]->y >= w || palette[index]->y < 0) {
             std::cout << "Position out of maze, please try again." << std::endl;
             continue;
-        } else if (tempMaze.CanMove(palette[index]->x, palette[index]->y))
+        } else if (tempMaze.IsNotObstacle(std::make_pair(palette[index]->x, palette[index]->y)))
             break;
         else {
             std::cout << "Position is blocked, please try again." << std::endl;
@@ -34,24 +34,24 @@ void Target::SetPositions() {
             std::cout << "Please enter starting point for wheeled "
                          "robot: x y" << std::endl;
             AssignLocations(palette, i, length, width);
+            tempMaze.ModifyMazePosition(wheeled.x, wheeled.y, 'w');
         } else if (i == 1) {
             std::cout << "Please enter starting point for tracked "
                          "robot: x y" << std::endl;
             AssignLocations(palette, i, length, width);
+            tempMaze.ModifyMazePosition(tracked.x, tracked.y, 't');
         } else if (i == 2) {
             std::cout << "Please enter location for bottle: "
                          "x y" << std::endl;
             AssignLocations(palette, i, length, width);
+            tempMaze.ModifyMazePosition(bottle.x, bottle.y, 'b');
         } else {
             std::cout << "Please enter location for plate: "
                          "x y" << std::endl;
             AssignLocations(palette, i, length, width);
+            tempMaze.ModifyMazePosition(plate.x, plate.y, 'p');
         }
     }
-    tempMaze.ModifyMazePosition(tracked.x, tracked.y, 't');
-    tempMaze.ModifyMazePosition(wheeled.x, wheeled.y, 'w');
-    tempMaze.ModifyMazePosition(bottle.x, bottle.y, 'b');
-    tempMaze.ModifyMazePosition(plate.x, plate.y, 'p');
     tempMaze.ShowMaze();
 }
 

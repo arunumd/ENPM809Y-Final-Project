@@ -3,7 +3,7 @@
  * @author      Arun Kumar Devarajulu
  * @author      Zuyang Cao
  * @author      Qidi Xu
- * @author	    Hongyang Jiang
+ * @author      Hongyang Jiang
  * @date        05/10/2019
  * @brief       The file MobileRobot_FSM.h contains the header declarations for RobotState
  *              and class. The class will be used for implementation of finite state machine
@@ -48,7 +48,7 @@ public:
 	@param string - sequence of move instruction
 	@param stack - address of stack to gain access to the value while out of scope
 	*/
-    virtual void HandleInput(std::stack<RobotState *> &, std::string) {
+    virtual void HandleInput(std::stack<RobotState *> &, const std::string&) {
     }
 
     /*
@@ -56,7 +56,7 @@ public:
      * @param name_ - name of RobotState
      * @param stack - address of stack to gain access to the value while out of scope
      * */
-    explicit RobotState(std::string name = "RobotState"): name_{name} {}
+    explicit RobotState(std::string name = "RobotState"): name_{std::move(name)} {}
 
     /*
 	@brief Define default destructor
@@ -95,7 +95,7 @@ public:
 	@brief Push current node location into stack while update the new node
 	according to the previous move
 	*/
-    void HandleInput(std::stack<RobotState *> &, std::string) override;
+    void HandleInput(std::stack<RobotState *> &, const std::string&) override;
 
     /*@brief Default destructor*/
     ~UpState() override = default;
@@ -119,7 +119,7 @@ public:
 	@brief Push current node location into stack while update the new node
 	according to the previous move
 	*/
-    void HandleInput(std::stack<RobotState *> &, std::string) override;
+    void HandleInput(std::stack<RobotState *> &, const std::string&) override;
 
     /*@brief Default destructor*/
     ~DownState() override = default;
@@ -143,7 +143,7 @@ public:
 	@brief Push current node location into stack while update the new node
 	according to the previous move
 	*/
-    void HandleInput(std::stack<RobotState *> &, std::string) override;
+    void HandleInput(std::stack<RobotState *> &, const std::string&) override;
 
     /*@brief Default destructor*/
     ~LeftState() override = default;
@@ -167,7 +167,7 @@ public:
 	@brief Push current node location into stack while update the new node
 	according to the previous move
 	*/
-    void HandleInput(std::stack<RobotState *> &, std::string) override;
+    void HandleInput(std::stack<RobotState *> &, const std::string&) override;
 
     /*@brief Default destructor*/
     ~RightState() override = default;
@@ -196,7 +196,7 @@ public:
     /* @brief Virtual function to handle input.
      * @param input - input robot state.
      */
-    virtual void HandleInput(std::string input);
+    virtual void HandleInput(const std::string &input);
     
     /* @brief Function to print the stack.*/
     void ShowStack();
