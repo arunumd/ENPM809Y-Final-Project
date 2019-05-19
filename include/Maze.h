@@ -1,11 +1,11 @@
 /*
- * @file       A-Star.h
+ * @file       Maze.h
  * @author     Arun Kumar Devarajulu
  * @author     Zuyang Cao
  * @author     Qidi Xu
  * @author     Hongyang Jiang
  * @date       04/27/2019
- * @brief      The file A-Star.h contains the header declarations for Maze
+ * @brief      The file Maze.h contains the header declarations for Maze
  *             class. The class will be used for implementation of A-Star
  *             Algorithm in Final Project
  * @license    MIT License
@@ -38,7 +38,6 @@
 #include <stack>
 #include <memory>
 #include "MobileRobot.h"
-
 
 /*
  * @brief  Define data structure that contain information for each nodes

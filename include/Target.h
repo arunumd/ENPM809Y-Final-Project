@@ -37,12 +37,6 @@
 #include <array>
 #include <map>
 #include "Maze.h"
-#include "Target.h"
-#include "DownState.h"
-#include "UpState.h"
-#include "LeftState.h"
-#include "RightState.h"
-#include "RobotState.h"
 #include "MobileRobot.h"
 #include "WheeledRobot.h"
 #include "TrackedRobot.h"

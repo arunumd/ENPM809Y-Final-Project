@@ -30,10 +30,12 @@
 
 #ifndef ENPM809Y_PROJECT_5_MOBILEROBOT_H
 #define ENPM809Y_PROJECT_5_MOBILEROBOT_H
-#include "RobotState.h"
+
 #include <iostream>
 #include <stack>
 #include <string>
+#include "RobotState.h"
+
 /*
  * @brief The MobileRobot class is the base class for WheeledRobot class and
  * TrackedRobot.

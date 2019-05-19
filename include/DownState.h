@@ -27,9 +27,10 @@
  *              OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *              SOFTWARE.
  */
- 
+
 #ifndef ENPM809Y_PROJECT_5_DOWNSTATE_H
 #define ENPM809Y_PROJECT_5_DOWNSTATE_H
+
 #include <iostream>
 #include <stack>
 #include <string>
@@ -42,21 +43,23 @@
  * function is always the same for each state, but for further implementation, 
  * it can be modified here.
  */
-class DownState : public RobotState {
-public:
-    /*
-	@brief Inheritance DownState from RobotState
-	*/
-    DownState(): RobotState("Down") {}
+namespace State {
+    class DownState : public RobotState {
+    public:
+        /*
+        @brief Inheritance DownState from RobotState
+        */
+        DownState() : RobotState("Down") {}
 
-    /*
-	@brief Push current node location into stack while update the new node
-	according to the previous move
-	*/
-    void HandleInput(std::stack<RobotState *> &, const std::string&) override;
+        /*
+        @brief Push current node location into stack while update the new node
+        according to the previous move
+        */
+        void HandleInput(std::stack<RobotState *> &, const std::string &) override;
 
-    /*@brief Default destructor*/
-    ~DownState() override = default;
-};
+        /*@brief Default destructor*/
+        ~DownState() override = default;
+    };
+}
 
 #endif // ENPM809Y_PROJECT_5_DOWNSTATE_H

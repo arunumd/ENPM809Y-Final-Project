@@ -1,3 +1,32 @@
+/*
+ * @file        MobileRobot_FSM.cpp
+ * @author      Arun Kumar Devarajulu
+ * @author      Zuyang Cao
+ * @author      Qidi Xu
+ * @author      Hongyang Jiang
+ * @date        05/10/2019
+ * @brief       The file MobileRobot_FSM.cpp contains the implementation details of
+ *              finite state machine
+ * @license     MIT License
+ *              Permission is hereby granted, free of charge, to any person obtaining a copy
+ *              of this software and associated documentation files (the "Software"), to deal
+ *              in the Software without restriction, including without limitation the rights
+ *              to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *              copies of the Software, and to permit persons to whom the Software is
+ *              furnished to do so, subject to the following conditions:
+ *
+ *              The above copyright notice and this permission notice shall be included in all
+ *              copies or substantial portions of the Software.
+ *
+ *              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *              IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *              FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+ *              AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *              LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *              OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *              SOFTWARE.
+ */
+
 #include <iostream>
 #include <stack>
 #include <string>
@@ -17,7 +46,7 @@ MobileRobot::MobileRobot(std::string RobotName) {
 }
 
 void WheeledRobot::HandleInput(const std::string &input) {
-    RobotState *state = new UpState();
+    State::RobotState *state = new State::UpState();
 
     if (RobotStack_.empty())
         state->HandleInput(RobotStack_, input);
@@ -27,7 +56,7 @@ void WheeledRobot::HandleInput(const std::string &input) {
 }
 
 void TrackedRobot::HandleInput(const std::string &input) {
-    RobotState *state = new UpState();
+    State::RobotState *state = new State::UpState();
 
     if (RobotStack_.empty())
         state->HandleInput(RobotStack_, input);
@@ -60,7 +89,7 @@ std::string MobileRobot::GetName() {
 
 // UpState::UpState()
 
-void UpState::HandleInput(std::stack<RobotState *> &stack_,
+void State::UpState::HandleInput(std::stack<State::RobotState *> &stack_,
                           const std::string &input) {
     if (stack_.empty()) {
         stack_.push(this);
@@ -83,7 +112,7 @@ void UpState::HandleInput(std::stack<RobotState *> &stack_,
     }
 }
 
-void DownState::HandleInput(std::stack<RobotState *> &stack_,
+void State::DownState::HandleInput(std::stack<State::RobotState *> &stack_,
                             const std::string &input) {
     if (stack_.empty()) {
         stack_.push(this);
@@ -106,7 +135,7 @@ void DownState::HandleInput(std::stack<RobotState *> &stack_,
     }
 }
 
-void LeftState::HandleInput(std::stack<RobotState *> &stack_,
+void State::LeftState::HandleInput(std::stack<RobotState *> &stack_,
                             const std::string &input) {
     if (stack_.empty()) {
         stack_.push(this);
@@ -129,7 +158,7 @@ void LeftState::HandleInput(std::stack<RobotState *> &stack_,
     }
 }
 
-void RightState::HandleInput(std::stack<RobotState *> &stack_,
+void State::RightState::HandleInput(std::stack<State::RobotState *> &stack_,
                              const std::string &input) {
     if (stack_.empty()) {
         stack_.push(this);

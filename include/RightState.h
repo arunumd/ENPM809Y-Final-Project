@@ -27,13 +27,14 @@
  *              OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *              SOFTWARE.
  */
- 
+
 #ifndef ENPM809Y_PROJECT_5_RIGHTSTATE_H
 #define ENPM809Y_PROJECT_5_RIGHTSTATE_H
+
 #include <iostream>
 #include <stack>
 #include <string>
-#include "../include/RobotState.h"
+#include "RobotState.h"
 
 /*
  * @brief The RightState class is part of the finite state machine. It has its own 
@@ -41,21 +42,23 @@
  * function is always the same for each state, but for further implementation, 
  * it can be modified here.
  */
-class RightState : public RobotState {
-public:
-    /*
-	@brief Inheritance RightState from RobotState
-	*/
-    RightState(): RobotState("Right") {}
+namespace State {
+    class RightState : public RobotState {
+    public:
+        /*
+        @brief Inheritance RightState from RobotState
+        */
+        RightState() : RobotState("Right") {}
 
-    /*
-	@brief Push current node location into stack while update the new node
-	according to the previous move
-	*/
-    void HandleInput(std::stack<RobotState *> &, const std::string&) override;
+        /*
+        @brief Push current node location into stack while update the new node
+        according to the previous move
+        */
+        void HandleInput(std::stack<RobotState *> &, const std::string &) override;
 
-    /*@brief Default destructor*/
-    ~RightState() override = default;
-};
+        /*@brief Default destructor*/
+        ~RightState() override = default;
+    };
+}
 
 #endif // ENPM809Y_PROJECT_5_RIGHTSTATE_H

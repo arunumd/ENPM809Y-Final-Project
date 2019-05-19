@@ -30,11 +30,12 @@
 
 #ifndef ENPM809Y_PROJECT_5_WHEELEDROBOT_H
 #define ENPM809Y_PROJECT_5_WHEELEDROBOT_H
+
 #include <iostream>
 #include <stack>
 #include <string>
-#include "../include/MobileRobot.h"
-#include "../include/RobotState.h"
+#include "MobileRobot.h"
+#include "RobotState.h"
 
 /*
  * @brief The WheeledRobot class handles state inputs and stores state stack 
@@ -62,7 +63,7 @@ public:
     @brief Function to get stack.
     @return stack of the robot
     */
-    std::stack<RobotState*> GetStack(){
+    std::stack<State::RobotState*> GetStack(){
 		return RobotStack_;
 	}
 
@@ -71,7 +72,7 @@ private:
     /* @brief Stack to store robot states for the
      * pushdown automata.
      */
-    std::stack<RobotState*> RobotStack_;
+    std::stack<State::RobotState*> RobotStack_;
 };
 
 

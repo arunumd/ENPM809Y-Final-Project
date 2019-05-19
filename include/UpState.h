@@ -30,10 +30,11 @@
  
 #ifndef ENPM809Y_PROJECT_5_UPSTATE_H
 #define ENPM809Y_PROJECT_5_UPSTATE_H
+
 #include <iostream>
 #include <stack>
 #include <string>
-#include "../include/RobotState.h"
+#include "RobotState.h"
 
 /*
  * @brief The UpState class is part of the finite state machine. It has its own 
@@ -41,22 +42,24 @@
  * function is always the same for each state, but for further implementation, 
  * it can be modified here.
  */
-class UpState : public RobotState {
-public:
-    /*
-	@brief Inheritance UpState from RobotState
-	*/
-    UpState(): RobotState("Up") {}
+namespace State {
+    class UpState : public RobotState {
+    public:
+        /*
+        @brief Inheritance UpState from RobotState
+        */
+        UpState() : RobotState("Up") {}
 
-    /*
-	@brief Push current node location into stack while update the new node
-	according to the previous move
-	*/
-    void HandleInput(std::stack<RobotState *> &, const std::string&) override;
+        /*
+        @brief Push current node location into stack while update the new node
+        according to the previous move
+        */
+        void HandleInput(std::stack<RobotState *> &, const std::string &) override;
 
-    /*@brief Default destructor*/
-    ~UpState() override = default;
-};
+        /*@brief Default destructor*/
+        ~UpState() override = default;
+    };
+}
 
 
 #endif // ENPM809Y_PROJECT_5_UPSTATE_H
