@@ -5,7 +5,7 @@
  * @author     Qidi Xu
  * @author     Hongyang Jiang
  * @date       04/27/2019
- * @brief      The file A-Star.h contains the header declarations for Maze
+ * @brief      The file A-Star.h contains the header declarations for AStar
  *             class. The class will be used for implementation of A-Star
  *             Algorithm in Final Project
  * @license    MIT License
@@ -53,50 +53,50 @@ struct ListInfo {
 };
 
 /*
- * @brief The Maze class contains the search based A* navigation algorithm
+ * @brief The AStar class contains the search based A* navigation algorithm
  * for solving our path finding problem. The algorithm accepts a start position
  * and goal position and finds a shortest path. The complexity of our algorithm
  * is O(log n) because we use only one for loop to iterate through entries of
  * priority list_. The algorithm finds the shortest path very quick
  */
-class Maze {
+class AStar {
 public:
     /* @brief  Default constructor  */
-    Maze() : grid_{{"######################  ######################",
-                    "#        #           #  #                    #",
-                    "#  ####  #  #######  #  ##########  #######  #",
-                    "#  #     #  #        #        #     #     #  #",
-                    "#  ####  #  ################  #  #######  #  #",
-                    "#     #  #                 #  #  #        #  #",
-                    "#  #  #  #  #############  #  #  #  ####  #  #",
-                    "#  #  #  #  #           #  #  #  #  #  #  #  #",
-                    "#  #  #  #  #  #######  #  #  #  #  #  #  #  #",
-                    "#  #  #  #  #  #     #  #  #  #  #  #     #  #",
-                    "#  #  #  #  #  #######  #  #  #  #  #######  #",
-                    "#  #  #  #  #  #        #  #  #  #           #",
-                    "####  #  #  ##########  #  #  #  #############",
-                    "#     #  #              #  #  #              #",
-                    "#  #  #  #######  ####  #  #  #  ##########  #",
-                    "#  #  #     #     #     #  #  #     #     #  #",
-                    "#  #  ####  #############  #  ####  #  #  #  #",
-                    "#  #  #                    #     #     #  #  #",
-                    "####  #  ######################  ##########  #",
-                    "#     #  #                    #              #",
-                    "#  ####  #  ################  #############  #",
-                    "#  #     #  #              #           #  #  #",
-                    "#  #  ####  #  ##########  #  #  ####  #  #  #",
-                    "#  #  #  #  #  #  #     #  #  #  #        #  #",
-                    "#  #  #  #  #  #  #######  #  #############  #",
-                    "#  #     #  #           #  #                 #",
-                    "#  #######  #############  ###################",
-                    "#           #                 #        #     #",
-                    "#  ##########  #############  #######  ####  #",
-                    "#              #                             #",
-                    "##############################################"}},
-             start_{std::make_pair(-1, -1)}, goal_{std::make_pair(-1, -1)} {}
+    AStar() : grid_{{"######################  ######################",
+                            "#        #           #  #                    #",
+                            "#  ####  #  #######  #  ##########  #######  #",
+                            "#  #     #  #        #        #     #     #  #",
+                            "#  ####  #  ################  #  #######  #  #",
+                            "#     #  #                 #  #  #        #  #",
+                            "#  #  #  #  #############  #  #  #  ####  #  #",
+                            "#  #  #  #  #           #  #  #  #  #  #  #  #",
+                            "#  #  #  #  #  #######  #  #  #  #  #  #  #  #",
+                            "#  #  #  #  #  #     #  #  #  #  #  #     #  #",
+                            "#  #  #  #  #  #######  #  #  #  #  #######  #",
+                            "#  #  #  #  #  #        #  #  #  #           #",
+                            "####  #  #  ##########  #  #  #  #############",
+                            "#     #  #              #  #  #              #",
+                            "#  #  #  #######  ####  #  #  #  ##########  #",
+                            "#  #  #     #     #     #  #  #     #     #  #",
+                            "#  #  ####  #############  #  ####  #  #  #  #",
+                            "#  #  #                    #     #     #  #  #",
+                            "####  #  ######################  ##########  #",
+                            "#     #  #                    #              #",
+                            "#  ####  #  ################  #############  #",
+                            "#  #     #  #              #           #  #  #",
+                            "#  #  ####  #  ##########  #  #  ####  #  #  #",
+                            "#  #  #  #  #  #  #     #  #  #  #        #  #",
+                            "#  #  #  #  #  #  #######  #  #############  #",
+                            "#  #     #  #           #  #                 #",
+                            "#  #######  #############  ###################",
+                            "#           #                 #        #     #",
+                            "#  ##########  #############  #######  ####  #",
+                            "#              #                             #",
+                            "##############################################"}},
+              start_{std::make_pair(-1, -1)}, goal_{std::make_pair(-1, -1)} {}
 
     /* @brief Default destructor*/
-    ~Maze() = default;
+    ~AStar() = default;
 
     /*
 	@brief Check if node (x,y) is wall
@@ -104,12 +104,12 @@ public:
 	@param y - y coordinate of node
 	@return true if node can be moved to, false if node is a wall
 	*/
-    bool CanMove(int x, int y);
+    bool CanMove(const int&, const int&) const;
 
     /*
-	@brief Visualized the Maze by print it out on console
+	@brief Visualized the AStar by print it out on console
 	*/
-    void ShowMaze();
+    void ShowMaze() const;
 
     /*
 	@brief Retrieve the char value stored in maze at given coordinate (x,y)
@@ -117,7 +117,7 @@ public:
 	@param y - y coordinate of node
 	@return stored char value in location (x,y)
 	*/
-    char GetMazePosition(int x, int y);
+    char GetMazePosition(int x, int y) const;
 
     /*
 	@brief Modify the char value stored to given char value c in maze at given coordinate (x,y)
@@ -134,7 +134,7 @@ public:
 	@param goal_x - x coordinate of goal node
 	@param goal_y - y coordinate of goal node
 	*/
-    void SetStartGoal(int start_x, int start_y, int goal_x, int goal_y);
+    void SetStartGoal(const int&, const int&, const int&, const int&);
 
     /*
 	@brief build stack of moving sequence
@@ -181,8 +181,8 @@ public:
 	@param parent_node - coordinate of parent node
 	@return 1 if the move is better and -1 if else
 	*/
-    const int TakeDecision1(const std::pair<int, int> &new_node, const double &cost_g, ListInfo &info,
-                            const std::pair<int, int> &parent_node);
+    const int TakeDecision1(const std::pair<int, int> &new_node, const double &cost_g,
+                            ListInfo &info, const std::pair<int, int> &parent_node);
 
     /*
 	@brief make decision for initial move while check if satisfied restriction from
@@ -194,8 +194,8 @@ public:
 	@parent_node - coordinate of parent node
 	@return 1 if the move is better and -1 if else
 	*/
-    const int TakeDecision2(const std::pair<int, int> &new_node, const double &cost_g, ListInfo &info,
-                            const std::pair<int, int> &parent_node);
+    const int TakeDecision2(const std::pair<int, int> &new_node, const double &cost_g,
+                            ListInfo &info, const std::pair<int, int> &parent_node);
 
     /*
 	@brief main body of A* algorithm, initialized the process and iterate to update the
@@ -240,25 +240,25 @@ public:
 	@brief Get the length of the maze.
     @return length of the maze
 	*/
-    int GetLength();
-    
+    int GetLength() const;
+
     /*
 	@brief Get the width of the maze.
     @return width of the maze
 	*/
-    int GetWidth();
-    
+    int GetWidth() const;
+
 
 private:
     /*
 	@brief Pre-define width as 31 due to the fact the maze is given
 	*/
-    int width = 31;
+    const int width = 31;
 
     /*
 	@brief Pre-define length as 46 due to the fact the maze is given
 	*/
-    int length = 46;
+    const int length = 46;
 
     /* @brief Our maze representation*/
     std::array<std::string, 31> grid_;

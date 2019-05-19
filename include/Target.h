@@ -94,31 +94,37 @@ public:
     void AssignLocations(std::array<Location*, 4>&, const int&, const int&, const int&);
 
 private:
-    /*
-@brief Creates object wheeled for Location class
-*/
+    /* @brief Creates object wheeled for Location class */
     Location wheeled;
 
-    /*
-	@brief Creates object tracked for Location class
-	*/
+    /* @brief Creates object tracked for Location class */
     Location tracked;
 
-    /*
-	@brief Creates object plate for Location class
-	*/
+    /* @brief Creates object plate for Location class */
     Location plate;
 
-    /*
-	@brief Creates object bottle for Location class
-	*/
+    /* @brief Creates object bottle for Location class */
     Location bottle;
-    Maze tempMaze;
-    Maze wheeledMaze;
-    Maze trackedMaze;
+
+    /* Initialize a temporary maze*/
+    AStar tempMaze;
+
+    /* Create a copy of AStar class for wheeled robot*/
+    AStar wheeledMaze;
+
+    /* Create a copy of AStar class for tracked robot*/
+    AStar trackedMaze;
+
+    /* Character literal for plate*/
     char wheeled_target = 'p';
+
+    /* Character literal for bottle*/
     char tracked_target = 'b';
+
+    /* Shared pointer for polymorphism of WheeledRobot*/
     std::shared_ptr<MobileRobot> wheeledRobotInMaze = std::make_shared<WheeledRobot>();
+
+    /* Shared pointer for polymorphism of TrackedRobot*/
     std::shared_ptr<MobileRobot> trackedRobotInMaze = std::make_shared<TrackedRobot>();
 };
 

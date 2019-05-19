@@ -1,4 +1,4 @@
-// Classes Target and Maze Start
+// Classes Target and AStar Start
 #include <array>
 #include <cmath>
 #include <iostream>
@@ -25,8 +25,8 @@ void Target::AssignLocations(std::array<Location *, 4> &palette,
 }
 
 void Target::SetPositions() {
-    int length = tempMaze.length;
-    int width = tempMaze.width;
+    int length = tempMaze.GetLength();
+    int width = tempMaze.GetWidth();
     tempMaze.ShowMaze();
     std::array<Location *, 4> palette{&wheeled, &tracked, &bottle, &plate};
     for (std::size_t i = 0; i <= 3; i++) {
@@ -119,8 +119,8 @@ void Target::GoTracked() {
 }
 
 void Target::PlotMaze() {
-    for (int j = tempMaze.width - 1; j >= 0; j--) {
-        for (int i = 0; i < tempMaze.length; i++) {
+    for (int j = tempMaze.GetWidth() - 1; j >= 0; j--) {
+        for (int i = 0; i < tempMaze.GetLength(); i++) {
             if (wheeledMaze.GetMazePosition(i, j) == '|' and
                 trackedMaze.GetMazePosition(i, j) == '-') {
                 tempMaze.ModifyMazePosition(i, j, '+');
