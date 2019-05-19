@@ -7,8 +7,16 @@
 #include <stack>
 #include <utility>
 #include <memory>
-#include "../include/A-Star.h"
-#include "../include/MobileRobot_FSM.h"
+#include "../include/Maze.h"
+#include "../include/Target.h"
+#include "../include/DownState.h"
+#include "../include/UpState.h"
+#include "../include/LeftState.h"
+#include "../include/RightState.h"
+#include "../include/RobotState.h"
+#include "../include/MobileRobot.h"
+#include "../include/WheeledRobot.h"
+#include "../include/TrackedRobot.h"
 
 int Maze::GetLength() const {
     return length;
@@ -245,7 +253,7 @@ int Maze::Action() {
     return 1;
 }
 
-void Maze::PlotTrajectory(const char &path_icon) {
+int Maze::PlotTrajectory(const char &path_icon) {
     int status = Action();
     if (status == 1) {
         std::pair<int, int> node = goal_;
@@ -257,7 +265,9 @@ void Maze::PlotTrajectory(const char &path_icon) {
             node = closed_list_.find(parent)->second.node;
             parent = closed_list_.find(parent)->second.parent;
         }
+    return 0; // Return 0 for a path exists.
     } else {
+        return 1; // Return 1 for no path exists.
     }
 }
 

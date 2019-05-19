@@ -4,8 +4,16 @@
 #include <iostream>
 #include <utility>
 #include <memory>
-#include "../include/A-Star.h"
+#include "../include/Maze.h"
 #include "../include/Target.h"
+#include "../include/DownState.h"
+#include "../include/UpState.h"
+#include "../include/LeftState.h"
+#include "../include/RightState.h"
+#include "../include/RobotState.h"
+#include "../include/MobileRobot.h"
+#include "../include/WheeledRobot.h"
+#include "../include/TrackedRobot.h"
 
 void Target::AssignLocations(std::array<Location *, 4> &palette,
                              const int &index, const int &l, const int &w) {
@@ -31,22 +39,22 @@ void Target::SetPositions() {
     std::array<Location *, 4> palette{&wheeled, &tracked, &bottle, &plate};
     for (std::size_t i = 0; i <= 3; i++) {
         if (i == 0) {
-            std::cout << "Please enter starting point for wheeled "
+            std::cout << "\n\nPlease enter starting point for wheeled "
                          "robot: x y" << std::endl;
             AssignLocations(palette, i, length, width);
             tempMaze.ModifyMazePosition(wheeled.x, wheeled.y, 'w');
         } else if (i == 1) {
-            std::cout << "Please enter starting point for tracked "
+            std::cout << "\n\nPlease enter starting point for tracked "
                          "robot: x y" << std::endl;
             AssignLocations(palette, i, length, width);
             tempMaze.ModifyMazePosition(tracked.x, tracked.y, 't');
         } else if (i == 2) {
-            std::cout << "Please enter location for bottle: "
+            std::cout << "\n\nPlease enter location for bottle: "
                          "x y" << std::endl;
             AssignLocations(palette, i, length, width);
             tempMaze.ModifyMazePosition(bottle.x, bottle.y, 'b');
         } else {
-            std::cout << "Please enter location for plate: "
+            std::cout << "\n\nPlease enter location for plate: "
                          "x y" << std::endl;
             AssignLocations(palette, i, length, width);
             tempMaze.ModifyMazePosition(plate.x, plate.y, 'p');
@@ -80,14 +88,14 @@ void Target::AssignTasks() {
     }
 }
 
-void Target::GoWheeled() {
+int Target::GoWheeled() {
     if (wheeled_target == 'p') {
         wheeledMaze.SetStartGoal(wheeled.x, wheeled.y, plate.x, plate.y);
     } else {
         wheeledMaze.SetStartGoal(wheeled.x, wheeled.y, bottle.x, bottle.y);
     }
     wheeledMaze.Action();
-    wheeledMaze.PlotTrajectory('|');
+    int is_blocked = wheeledMaze.PlotTrajectory('|');
     wheeledMaze.ModifyMazePosition(wheeled.x, wheeled.y, 'w');
     if (wheeled_target == 'p') {
         wheeledMaze.ModifyMazePosition(plate.x, plate.y, 'p');
@@ -97,16 +105,17 @@ void Target::GoWheeled() {
     wheeledMaze.ShowMaze();
     wheeledMaze.BuildStack(wheeledRobotInMaze);
     wheeledRobotInMaze->ShowStack();
+    return is_blocked;
 }
 
-void Target::GoTracked() {
+int Target::GoTracked() {
     if (tracked_target == 'p') {
         trackedMaze.SetStartGoal(tracked.x, tracked.y, plate.x, plate.y);
     } else {
         trackedMaze.SetStartGoal(tracked.x, tracked.y, bottle.x, bottle.y);
     }
     trackedMaze.Action();
-    trackedMaze.PlotTrajectory('-');
+    int is_blocked = trackedMaze.PlotTrajectory('-');
     trackedMaze.ModifyMazePosition(tracked.x, tracked.y, 't');
     if (tracked_target == 'p') {
         trackedMaze.ModifyMazePosition(plate.x, plate.y, 'p');
@@ -116,6 +125,7 @@ void Target::GoTracked() {
     trackedMaze.ShowMaze();
     trackedMaze.BuildStack(trackedRobotInMaze);
     trackedRobotInMaze->ShowStack();
+    return is_blocked;
 }
 
 void Target::PlotMaze() {

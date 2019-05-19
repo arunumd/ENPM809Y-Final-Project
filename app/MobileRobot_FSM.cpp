@@ -1,13 +1,22 @@
 #include <iostream>
 #include <stack>
 #include <string>
-#include "../include/MobileRobot_FSM.h"
+#include "../include/Maze.h"
+#include "../include/Target.h"
+#include "../include/DownState.h"
+#include "../include/UpState.h"
+#include "../include/LeftState.h"
+#include "../include/RightState.h"
+#include "../include/RobotState.h"
+#include "../include/MobileRobot.h"
+#include "../include/WheeledRobot.h"
+#include "../include/TrackedRobot.h"
 
 MobileRobot::MobileRobot(std::string RobotName) {
     name = std::move(RobotName);
 }
 
-void MobileRobot::HandleInput(const std::string &input) {
+void WheeledRobot::HandleInput(const std::string &input) {
     RobotState *state = new UpState();
 
     if (RobotStack_.empty())
@@ -17,7 +26,26 @@ void MobileRobot::HandleInput(const std::string &input) {
     delete state;
 }
 
-void MobileRobot::ShowStack() {
+void TrackedRobot::HandleInput(const std::string &input) {
+    RobotState *state = new UpState();
+
+    if (RobotStack_.empty())
+        state->HandleInput(RobotStack_, input);
+    else
+        RobotStack_.top()->HandleInput(RobotStack_, input);
+    delete state;
+}
+
+void WheeledRobot::ShowStack() {
+    auto s = RobotStack_;
+    while (s.size() > 1) {
+        printf("%s\n", s.top()->get_name().c_str());
+        s.pop();
+    }
+    printf("\n");
+}
+
+void TrackedRobot::ShowStack() {
     auto s = RobotStack_;
     while (s.size() > 1) {
         printf("%s\n", s.top()->get_name().c_str());

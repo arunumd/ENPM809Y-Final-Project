@@ -36,8 +36,16 @@
 #include <memory>
 #include <array>
 #include <map>
-#include "A-Star.h"
-#include "MobileRobot_FSM.h"
+#include "Maze.h"
+#include "Target.h"
+#include "DownState.h"
+#include "UpState.h"
+#include "LeftState.h"
+#include "RightState.h"
+#include "RobotState.h"
+#include "MobileRobot.h"
+#include "WheeledRobot.h"
+#include "TrackedRobot.h"
 
 /*
  *@brief Define data structure that contain location (cartesian coordinates)
@@ -76,12 +84,12 @@ public:
     /*
 	@brief Initiates A* algorithm for wheeled robot and show the result
 	*/
-    void GoWheeled();
+    int GoWheeled();
 
     /*
 	@brief Initiates A* algorithm for wheeled robot and show the result
 	*/
-    void GoTracked();
+    int GoTracked();
 
     /*
 	@brief Plot maze with two paths found

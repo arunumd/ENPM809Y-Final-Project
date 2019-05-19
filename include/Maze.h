@@ -37,7 +37,8 @@
 #include <map>
 #include <stack>
 #include <memory>
-#include "../include/MobileRobot_FSM.h"
+#include "MobileRobot.h"
+
 
 /*
  * @brief  Define data structure that contain information for each nodes
@@ -226,7 +227,7 @@ public:
 	@brief Plot the path yield from A* algorithm
 	@param path_icon - - or + for tracked or wheeled robots
 	*/
-    void PlotTrajectory(const char &path_icon);
+    int PlotTrajectory(const char &path_icon);
 
     /*
 	@brief Get the length of the maze.
