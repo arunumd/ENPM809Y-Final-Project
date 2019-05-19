@@ -40,43 +40,14 @@
 #include "MobileRobot_FSM.h"
 
 /*
-@brief Define data structure that contain coordinate for wheeled robot
-*/
-struct StartingWheeled {
-    int x = -1;
-    int y = -1;
-};
-
-/*
-@brief Define data structure that contain coordinate for tracked robot
-*/
-struct StartingTracked {
-    int x = -1;
-    int y = -1;
-};
-
-/*
-@brief Define data structure that contain coordinate for plate
-*/
-struct TargetPlate {
-    int x = -1;
-    int y = -1;
-};
-
-/*
-@brief Define data structure that contain coordinate for bottle
-*/
-struct TargetBottle {
-    int x = -1;
-    int y = -1;
-};
-
-
-/*
- * @brief The Target class handles the overall program. It will run the A-Star 
- * searching algorithm twice to get path for each robot. It also handles the 
- * input from user and stores the start and goal points.
+ *@brief Define data structure that contain location (cartesian coordinates)
+ *for robot and target locations
  */
+struct Location {
+    int x = -1;
+    int y = -1;
+};
+
 class Target {
 public:
     /*
@@ -85,7 +56,7 @@ public:
     Target() = default;
 
     /*
-	@brief  Define default constructor
+	@brief  Define default destructor
 	*/
     ~Target() = default;
 
@@ -117,72 +88,37 @@ public:
 	*/
     void PlotMaze();
 
-   
+    /*
+     * @brief Helper function to assign target locations and robot locations
+     */
+    void AssignLocations(std::array<Location*, 4>&, const int&, const int&, const int&);
+
 private:
-     /*
-	@brief Creates object wheeled for StartingWheeled class
-	*/
-    StartingWheeled wheeled;
+    /*
+@brief Creates object wheeled for Location class
+*/
+    Location wheeled;
 
     /*
-	@brief Creates object tracked for StartingTracked class
+	@brief Creates object tracked for Location class
 	*/
-    StartingTracked tracked;
+    Location tracked;
 
     /*
-	@brief Creates object plate for TargetPlate class
+	@brief Creates object plate for Location class
 	*/
-    TargetPlate plate;
+    Location plate;
 
     /*
-	@brief Creates object bottle for TargetBottle class
+	@brief Creates object bottle for Location class
 	*/
-    TargetBottle bottle;    
-
-    /*
-	@brief  A maze object for the overall path, it will display 
-     * both paths for both robots.
-	 */
+    Location bottle;
     Maze tempMaze;
-    
-    /*
-	@brief  A maze object for the wheeled robot, it will do the 
-     * searching algorithm for wheeled robot and its target, only
-     * the path for wheeled robot will be displayed. 
-	 */
     Maze wheeledMaze;
-    
-    /*
-	@brief  A maze object for the tracked robot, it will do the 
-     * searching algorithm for tracked robot and its target, only
-     * the path for tracked robot will be displayed. 
-	 */
     Maze trackedMaze;
-    
-    /*
-	@brief This stores the target for wheeled robot. It is initialized 
-     * as 'p' but will be modified in the SetPositions function.
-	 */
     char wheeled_target = 'p';
-    
-    /*
-	@brief This stores the target for tracked robot. It is initialized 
-     * as 'b' but will be modified in the SetPositions function.
-	 */
     char tracked_target = 'b';
-    
-    /*
-	@brief This creates a smart pointer for wheeled robot. It is used to 
-     * handle robot state inputs and realize the pushdown automata. It also 
-     * stores the path in its state stack.
-	 */
     std::shared_ptr<MobileRobot> wheeledRobotInMaze = std::make_shared<WheeledRobot>();
-    
-    /*
-	@brief This creates a smart pointer for tracked robot. It is used to 
-     * handle robot state inputs and realize the pushdown automata. It also 
-     * stores the path in its state stack.
-	 */
     std::shared_ptr<MobileRobot> trackedRobotInMaze = std::make_shared<TrackedRobot>();
 };
 
