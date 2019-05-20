@@ -1,11 +1,13 @@
 /*
- * @file        main.cpp
+ * @file        UpState.h
  * @author      Arun Kumar Devarajulu
  * @author      Zuyang Cao
  * @author      Qidi Xu
  * @author      Hongyang Jiang
  * @date        05/10/2019
- * @brief       The file main.cpp contains the final implementation for ENPM809Y final project
+ * @brief       The file UpState.h contains the header declarations for UpState
+ *              class. The class will be used for implementation of finite state machine
+ *              in Final Project
  * @license     MIT License
  *              Permission is hereby granted, free of charge, to any person obtaining a copy
  *              of this software and associated documentation files (the "Software"), to deal
@@ -26,34 +28,38 @@
  *              SOFTWARE.
  */
 
+#ifndef ENPM809Y_PROJECT_5_UPSTATE_H
+#define ENPM809Y_PROJECT_5_UPSTATE_H
+
 #include <iostream>
 #include <stack>
-#include "../include/Maze.h"
-#include "../include/Target.h"
-#include "../include/DownState.h"
-#include "../include/UpState.h"
-#include "../include/LeftState.h"
-#include "../include/RightState.h"
-#include "../include/RobotState.h"
-#include "../include/MobileRobot.h"
-#include "../include/WheeledRobot.h"
-#include "../include/TrackedRobot.h"
+#include <string>
+#include "RobotState.h"
 
-int main() {
-    int is_both_blocked = 1;
-    while (is_both_blocked) {
-        Target missions;
-        missions.SetPositions();
-        missions.AssignTasks();
-        int is_wheeled_blocked = missions.GoWheeled();
-        int is_tracked_blocked = missions.GoTracked();
-        if (is_wheeled_blocked == 0 or is_tracked_blocked == 0) {
-            is_both_blocked = 0;
-            missions.PlotMaze();
-        } else {
-            std::cout << "\n\nNo path for both robots, please try again.\n\n";
-        }
-    }
-    std::cout << "\nAt least one path has been found! \nProgram finished.\n\n";
-    return 0;
+/*
+ * @brief The UpState class is part of the finite state machine. It has its own 
+ * HandleInput function realization. Although in this program, the HandleInput  
+ * function is always the same for each state, but for further implementation, 
+ * it can be modified here.
+ */
+namespace State {
+    class UpState : public RobotState {
+    public:
+        /*
+        @brief Inheritance UpState from RobotState
+        */
+        UpState() : RobotState("Up") {}
+
+        /*
+        @brief Push current node location into stack while update the new node
+        according to the previous move
+        */
+        void HandleInput(std::stack<RobotState *> &, const std::string &) override;
+
+        /*@brief Default destructor*/
+        ~UpState() override = default;
+    };
 }
+
+
+#endif // ENPM809Y_PROJECT_5_UPSTATE_H

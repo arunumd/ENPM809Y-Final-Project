@@ -1,11 +1,11 @@
 /*
- * @file       A-Star.h
+ * @file       Maze.h
  * @author     Arun Kumar Devarajulu
  * @author     Zuyang Cao
  * @author     Qidi Xu
  * @author     Hongyang Jiang
  * @date       04/27/2019
- * @brief      The file A-Star.h contains the header declarations for Maze
+ * @brief      The file Maze.h contains the header declarations for Maze
  *             class. The class will be used for implementation of A-Star
  *             Algorithm in Final Project
  * @license    MIT License
@@ -37,7 +37,7 @@
 #include <map>
 #include <stack>
 #include <memory>
-#include "../include/MobileRobot_FSM.h"
+#include "MobileRobot.h"
 
 /*
  * @brief  Define data structure that contain information for each nodes
@@ -63,53 +63,45 @@ class Maze {
 public:
     /* @brief  Default constructor  */
     Maze() : grid_{{"######################  ######################",
-                    "#        #           #  #                    #",
-                    "#  ####  #  #######  #  ##########  #######  #",
-                    "#  #     #  #        #        #     #     #  #",
-                    "#  ####  #  ################  #  #######  #  #",
-                    "#     #  #                 #  #  #        #  #",
-                    "#  #  #  #  #############  #  #  #  ####  #  #",
-                    "#  #  #  #  #           #  #  #  #  #  #  #  #",
-                    "#  #  #  #  #  #######  #  #  #  #  #  #  #  #",
-                    "#  #  #  #  #  #     #  #  #  #  #  #     #  #",
-                    "#  #  #  #  #  #######  #  #  #  #  #######  #",
-                    "#  #  #  #  #  #        #  #  #  #           #",
-                    "####  #  #  ##########  #  #  #  #############",
-                    "#     #  #              #  #  #              #",
-                    "#  #  #  #######  ####  #  #  #  ##########  #",
-                    "#  #  #     #     #     #  #  #     #     #  #",
-                    "#  #  ####  #############  #  ####  #  #  #  #",
-                    "#  #  #                    #     #     #  #  #",
-                    "####  #  ######################  ##########  #",
-                    "#     #  #                    #              #",
-                    "#  ####  #  ################  #############  #",
-                    "#  #     #  #              #           #  #  #",
-                    "#  #  ####  #  ##########  #  #  ####  #  #  #",
-                    "#  #  #  #  #  #  #     #  #  #  #        #  #",
-                    "#  #  #  #  #  #  #######  #  #############  #",
-                    "#  #     #  #           #  #                 #",
-                    "#  #######  #############  ###################",
-                    "#           #                 #        #     #",
-                    "#  ##########  #############  #######  ####  #",
-                    "#              #                             #",
-                    "##############################################"}},
+                           "#        #           #  #                    #",
+                           "#  ####  #  #######  #  ##########  #######  #",
+                           "#  #     #  #        #        #     #     #  #",
+                           "#  ####  #  ################  #  #######  #  #",
+                           "#     #  #                 #  #  #        #  #",
+                           "#  #  #  #  #############  #  #  #  ####  #  #",
+                           "#  #  #  #  #           #  #  #  #  #  #  #  #",
+                           "#  #  #  #  #  #######  #  #  #  #  #  #  #  #",
+                           "#  #  #  #  #  #     #  #  #  #  #  #     #  #",
+                           "#  #  #  #  #  #######  #  #  #  #  #######  #",
+                           "#  #  #  #  #  #        #  #  #  #           #",
+                           "####  #  #  ##########  #  #  #  #############",
+                           "#     #  #              #  #  #              #",
+                           "#  #  #  #######  ####  #  #  #  ##########  #",
+                           "#  #  #     #     #     #  #  #     #     #  #",
+                           "#  #  ####  #############  #  ####  #  #  #  #",
+                           "#  #  #                    #     #     #  #  #",
+                           "####  #  ######################  ##########  #",
+                           "#     #  #                    #              #",
+                           "#  ####  #  ################  #############  #",
+                           "#  #     #  #              #           #  #  #",
+                           "#  #  ####  #  ##########  #  #  ####  #  #  #",
+                           "#  #  #  #  #  #  #     #  #  #  #        #  #",
+                           "#  #  #  #  #  #  #######  #  #############  #",
+                           "#  #     #  #           #  #                 #",
+                           "#  #######  #############  ###################",
+                           "#           #                 #        #     #",
+                           "#  ##########  #############  #######  ####  #",
+                           "#              #                             #",
+                           "##############################################"}},
              start_{std::make_pair(-1, -1)}, goal_{std::make_pair(-1, -1)} {}
 
     /* @brief Default destructor*/
     ~Maze() = default;
 
     /*
-	@brief Check if node (x,y) is wall
-	@param x - x coordinate of node
-	@param y - y coordinate of node
-	@return true if node can be moved to, false if node is a wall
-	*/
-    bool CanMove(int x, int y);
-
-    /*
 	@brief Visualized the Maze by print it out on console
 	*/
-    void ShowMaze();
+    void ShowMaze() const;
 
     /*
 	@brief Retrieve the char value stored in maze at given coordinate (x,y)
@@ -117,7 +109,7 @@ public:
 	@param y - y coordinate of node
 	@return stored char value in location (x,y)
 	*/
-    char GetMazePosition(int x, int y);
+    char GetMazePosition(const int &x, const int &y) const;
 
     /*
 	@brief Modify the char value stored to given char value c in maze at given coordinate (x,y)
@@ -125,7 +117,7 @@ public:
 	@param y - y coordinate of node
 	@param c - the char value user wish to modified to
 	*/
-    void ModifyMazePosition(int x, int y, char c);
+    void ModifyMazePosition(const int &x, const int &y, const char &c);
 
     /*
 	@brief set start and goal location
@@ -134,7 +126,7 @@ public:
 	@param goal_x - x coordinate of goal node
 	@param goal_y - y coordinate of goal node
 	*/
-    void SetStartGoal(int start_x, int start_y, int goal_x, int goal_y);
+    void SetStartGoal(const int &, const int &, const int &, const int &);
 
     /*
 	@brief build stack of moving sequence
@@ -148,28 +140,28 @@ public:
 	@param node - coordinate of current node
 	@return next node location
 	*/
-    std::pair<int, int> North(std::pair<int, int> node) const;
+    std::pair<int, int> North(const std::pair<int, int> &node) const;
 
     /*
 	@brief Get next node location given current node location when go right
 	@param node - coordinate of current node
 	@return next node location
 	*/
-    std::pair<int, int> East(std::pair<int, int> node) const;
+    std::pair<int, int> East(const std::pair<int, int> &node) const;
 
     /*
 	@brief Get next node location given current node location when go left
 	@param node - coordinate of current node
 	@return next node location
 	*/
-    std::pair<int, int> West(std::pair<int, int> node) const;
+    std::pair<int, int> West(const std::pair<int, int> &node) const;
 
     /*
 	@brief Get next node location given current node location when go down
 	@param node - coordinate of current node
 	@return next node location
 	*/
-    std::pair<int, int> South(std::pair<int, int> node) const;
+    std::pair<int, int> South(const std::pair<int, int> &node) const;
 
     /*
 	@brief make decision for initial move since there is no restriction from
@@ -181,8 +173,8 @@ public:
 	@param parent_node - coordinate of parent node
 	@return 1 if the move is better and -1 if else
 	*/
-    const int TakeDecision1(const std::pair<int, int> &new_node, const double &cost_g, ListInfo &info,
-                            const std::pair<int, int> &parent_node);
+    const int TakeDecision1(const std::pair<int, int> &new_node, const double &cost_g,
+                            ListInfo &info, const std::pair<int, int> &parent_node);
 
     /*
 	@brief make decision for initial move while check if satisfied restriction from
@@ -194,8 +186,8 @@ public:
 	@parent_node - coordinate of parent node
 	@return 1 if the move is better and -1 if else
 	*/
-    const int TakeDecision2(const std::pair<int, int> &new_node, const double &cost_g, ListInfo &info,
-                            const std::pair<int, int> &parent_node);
+    const int TakeDecision2(const std::pair<int, int> &new_node, const double &cost_g,
+                            ListInfo &info, const std::pair<int, int> &parent_node);
 
     /*
 	@brief main body of A* algorithm, initialized the process and iterate to update the
@@ -214,51 +206,51 @@ public:
 	@param current_node - coordinate of current node
 	@return the euclidean distance between given current node and goal node
 	*/
-    const double CalculateDistance(std::pair<int, int> current_node) const;
+    const double CalculateDistance(const std::pair<int, int> &current_node) const;
 
     /*
 	@brief check if given node is not an obstacle
 	@param node - coordinate of node to be checked
 	@return false if the node is a wall, true if else
 	*/
-    bool IsNotObstacle(std::pair<int, int> node) const;
+    bool IsNotObstacle(const std::pair<int, int> &node) const;
 
     /*
 	@brief check if given node is within the maze
 	@param node - coordinate of node to be checked
 	@return false if the node is within the maze, true if else
 	*/
-    bool IsWithinRegion(std::pair<int, int> node) const;
+    bool IsWithinRegion(const std::pair<int, int> &node) const;
 
     /*
 	@brief Plot the path yield from A* algorithm
 	@param path_icon - - or + for tracked or wheeled robots
 	*/
-    void PlotTrajectory(char path_icon);
+    int PlotTrajectory(const char &path_icon);
 
     /*
 	@brief Get the length of the maze.
     @return length of the maze
 	*/
-    int GetLength();
-    
+    int GetLength() const;
+
     /*
 	@brief Get the width of the maze.
     @return width of the maze
 	*/
-    int GetWidth();
-    
+    int GetWidth() const;
+
 
 private:
     /*
 	@brief Pre-define width as 31 due to the fact the maze is given
 	*/
-    int width = 31;
+    const int width = 31;
 
     /*
 	@brief Pre-define length as 46 due to the fact the maze is given
 	*/
-    int length = 46;
+    const int length = 46;
 
     /* @brief Our maze representation*/
     std::array<std::string, 31> grid_;

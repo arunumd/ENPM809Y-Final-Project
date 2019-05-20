@@ -1,24 +1,57 @@
-//
-// Created by arunk on 04/27/2019.
-//
+/*
+ * @file        Maze.cpp
+ * @author      Arun Kumar Devarajulu
+ * @author      Zuyang Cao
+ * @author      Qidi Xu
+ * @author      Hongyang Jiang
+ * @date        05/10/2019
+ * @brief       The file Maze.cpp contains the definitions for Maze class
+ * @license     MIT License
+ *              Permission is hereby granted, free of charge, to any person obtaining a copy
+ *              of this software and associated documentation files (the "Software"), to deal
+ *              in the Software without restriction, including without limitation the rights
+ *              to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *              copies of the Software, and to permit persons to whom the Software is
+ *              furnished to do so, subject to the following conditions:
+ *
+ *              The above copyright notice and this permission notice shall be included in all
+ *              copies or substantial portions of the Software.
+ *
+ *              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *              IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *              FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+ *              AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *              LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *              OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *              SOFTWARE.
+ */
+
 #include <array>
 #include <cmath>
 #include <iostream>
 #include <stack>
 #include <utility>
 #include <memory>
-#include "../include/A-Star.h"
-#include "../include/MobileRobot_FSM.h"
+#include "../include/Maze.h"
+#include "../include/Target.h"
+#include "../include/DownState.h"
+#include "../include/UpState.h"
+#include "../include/LeftState.h"
+#include "../include/RightState.h"
+#include "../include/RobotState.h"
+#include "../include/MobileRobot.h"
+#include "../include/WheeledRobot.h"
+#include "../include/TrackedRobot.h"
 
-int Maze::GetLength(){
+int Maze::GetLength() const {
     return length;
 }
 
-int Maze::GetWidth(){
+int Maze::GetWidth() const {
     return width;
 }
 
-void Maze::ModifyMazePosition(int x, int y, char c) {
+void Maze::ModifyMazePosition(const int &x, const int &y, const char &c) {
     if (grid_[y][x] == '#') {
         std::cout << "Modify maze failed, position blocked!" << std::endl;
         return;
@@ -26,23 +59,17 @@ void Maze::ModifyMazePosition(int x, int y, char c) {
     grid_[y][x] = c;
 }
 
-char Maze::GetMazePosition(int x, int y) {
+char Maze::GetMazePosition(const int &x, const int &y) const {
     return char(grid_[y][x]);
 }
 
-bool Maze::CanMove(int x, int y) {
-    if (grid_[y][x] == '#')
-        return false;
-    else
-        return true;
-}
-
-void Maze::SetStartGoal(int start_x, int start_y, int goal_x, int goal_y) {
+void Maze::SetStartGoal(const int &start_x, const int &start_y,
+                        const int &goal_x, const int &goal_y) {
     start_ = std::make_pair(start_x, start_y);
     goal_ = std::make_pair(goal_x, goal_y);
 }
 
-void Maze::ShowMaze() {
+void Maze::ShowMaze() const {
     std::cout << "\n\n\n";
     for (int i = width - 1; i >= 0; i--) {
         if (i >= 10)
@@ -65,40 +92,38 @@ void Maze::ShowMaze() {
     std::cout << "\n\n\n";
 }
 
-// Classes Target and Maze End
-
-std::pair<int, int> Maze::North(const std::pair<int, int> node) const {
+std::pair<int, int> Maze::North(const std::pair<int, int> &node) const {
     return std::make_pair(node.first, node.second - 1);
 }
 
-std::pair<int, int> Maze::East(const std::pair<int, int> node) const {
+std::pair<int, int> Maze::East(const std::pair<int, int> &node) const {
     return std::make_pair(node.first + 1, node.second);
 }
 
-std::pair<int, int> Maze::West(const std::pair<int, int> node) const {
+std::pair<int, int> Maze::West(const std::pair<int, int> &node) const {
     return std::make_pair(node.first - 1, node.second);
 }
 
-std::pair<int, int> Maze::South(const std::pair<int, int> node) const {
+std::pair<int, int> Maze::South(const std::pair<int, int> &node) const {
     return std::make_pair(node.first, node.second + 1);
 }
 
-const double Maze::CalculateDistance(std::pair<int, int> current_node) const {
-    return std::sqrt(std::pow(current_node.first - goal_.first, 2) + std::pow(current_node.second - goal_.second, 2));
+const double Maze::CalculateDistance(const std::pair<int, int> &current_node) const {
+    return std::sqrt(std::pow(current_node.first - goal_.first, 2) +
+                     std::pow(current_node.second - goal_.second, 2));
 }
 
-bool Maze::IsNotObstacle(std::pair<int, int> node) const {
-    if (grid_[node.second][node.first] == '#')
-        return false;
-    else
-        return true;
+bool Maze::IsNotObstacle(const std::pair<int, int> &node) const {
+    return grid_[node.second][node.first] != '#' &&
+           grid_[node.second][node.first] != 'p' &&
+           grid_[node.second][node.first] != 'b' &&
+           grid_[node.second][node.first] != 'w' &&
+           grid_[node.second][node.first] != 't';
 }
 
-bool Maze::IsWithinRegion(std::pair<int, int> node) const {
-    if (node.first >= 0 && node.first <= 45 && node.second >= 0 && node.second <= 30)
-        return true;
-    else
-        return false;
+bool Maze::IsWithinRegion(const std::pair<int, int> &node) const {
+    return node.first >= 0 && node.first <= 45 &&
+           node.second >= 0 && node.second <= 30;
 }
 
 const int Maze::TakeDecision1(const std::pair<int, int> &new_node,
@@ -150,7 +175,7 @@ const int Maze::TakeDecision2(const std::pair<int, int> &new_node,
                 auto it_range = priority_list_.equal_range(value.total_cost);
                 for (auto itr = it_range.first; itr != it_range.second; ++itr) {
                     if (itr->second.node == new_node) {
-                        itr->second.cost_g = info.cost_g;         //<- Find groups and update for unique values nodes
+                        itr->second.cost_g = info.cost_g;
                         itr->second.cost_h = info.cost_h;
                         itr->second.total_cost = info.total_cost;
                         itr->second.parent = info.parent;
@@ -160,7 +185,8 @@ const int Maze::TakeDecision2(const std::pair<int, int> &new_node,
             }
             return -1;
         } else { // If key could not be found in open list, then do the following --
-            // Note: Even though priority list does not have key, it may have the same cost f for a different key
+            // Note: Even though priority list does not have key, it may have the same
+            // cost f for a different key
             info.cost_h = CalculateDistance(new_node);
             info.cost_g = cost_g + 1;
             info.total_cost = info.cost_g + info.cost_h;
@@ -252,10 +278,9 @@ int Maze::Action() {
     return 1;
 }
 
-void Maze::PlotTrajectory(char path_icon) {
+int Maze::PlotTrajectory(const char &path_icon) {
     int status = Action();
     if (status == 1) {
-        //        auto board = grid_;
         std::pair<int, int> node = goal_;
         std::pair<int, int> parent = closed_list_.find(node)->second.parent;
         while (parent != node) {
@@ -265,7 +290,9 @@ void Maze::PlotTrajectory(char path_icon) {
             node = closed_list_.find(parent)->second.node;
             parent = closed_list_.find(parent)->second.parent;
         }
+        return 0; // Return 0 for a path exists.
     } else {
+        return 1; // Return 1 for no path exists.
     }
 }
 
