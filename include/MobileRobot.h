@@ -43,9 +43,7 @@
 class MobileRobot
 {
 public:
-    /*
-        @brief Default constructor
-        */
+    /* @brief Default constructor */
     MobileRobot() = default;
 
     /* @brief Constructor with string input for the name member.

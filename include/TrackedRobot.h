@@ -27,7 +27,7 @@
  *              OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *              SOFTWARE.
  */
- 
+
 #ifndef ENPM809Y_PROJECT_5_TRACKEDROBOT_H
 #define ENPM809Y_PROJECT_5_TRACKEDROBOT_H
 
@@ -46,33 +46,24 @@ public:
     /*
 	@brief Constructor to initialize the name as "Tracked Robot".
 	*/
-    TrackedRobot(): MobileRobot("Tracked Robot") {};
+    TrackedRobot() : MobileRobot("Tracked Robot") {};
 
     /* @brief Default destructor*/
     ~TrackedRobot() = default;
-    
+
     /* @brief Virtual function to handle input.
      * @param input - input robot state.
      */
-    void HandleInput(const std::string& input) override;
-    
+    void HandleInput(const std::string &input) override;
+
     /* @brief Function to print the stack.*/
     void ShowStack() override;
-    
-    /*
-    @brief Function to get stack.
-    @return stack of the robot
-    */
-    std::stack<State::RobotState*> GetStack(){
-		return RobotStack_;
-	}
 
-    
 private:
     /* @brief Stack to store robot states for the
      * pushdown automata.
      */
-    std::stack<State::RobotState*> RobotStack_;
+    std::stack<State::RobotState *> RobotStack_;
 };
 
 #endif // ENPM809Y_PROJECT_5_TRACKEDROBOT_H

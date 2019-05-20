@@ -109,7 +109,7 @@ public:
 	@param y - y coordinate of node
 	@return stored char value in location (x,y)
 	*/
-    char GetMazePosition(int x, int y) const;
+    char GetMazePosition(const int &x, const int &y) const;
 
     /*
 	@brief Modify the char value stored to given char value c in maze at given coordinate (x,y)
@@ -117,7 +117,7 @@ public:
 	@param y - y coordinate of node
 	@param c - the char value user wish to modified to
 	*/
-    void ModifyMazePosition(int x, int y, char c);
+    void ModifyMazePosition(const int &x, const int &y, const char &c);
 
     /*
 	@brief set start and goal location

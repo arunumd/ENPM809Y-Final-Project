@@ -46,33 +46,24 @@ public:
     /*
 	@brief Constructor to initialize the name as "Wheeled Robot".
 	*/
-    WheeledRobot(): MobileRobot("Wheeled Robot") {};
+    WheeledRobot() : MobileRobot("Wheeled Robot") {};
 
     /* @brief Default destructor*/
     ~WheeledRobot() = default;
-    
+
     /* @brief Virtual function to handle input.
      * @param input - input robot state.
      */
-    void HandleInput(const std::string& input) override;
-    
+    void HandleInput(const std::string &input) override;
+
     /* @brief Function to print the stack.*/
     void ShowStack() override;
-    
-     /*
-    @brief Function to get stack.
-    @return stack of the robot
-    */
-    std::stack<State::RobotState*> GetStack(){
-		return RobotStack_;
-	}
 
-    
 private:
     /* @brief Stack to store robot states for the
      * pushdown automata.
      */
-    std::stack<State::RobotState*> RobotStack_;
+    std::stack<State::RobotState *> RobotStack_;
 };
 
 

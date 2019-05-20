@@ -51,7 +51,7 @@ int Maze::GetWidth() const {
     return width;
 }
 
-void Maze::ModifyMazePosition(int x, int y, char c) {
+void Maze::ModifyMazePosition(const int &x, const int &y, const char &c) {
     if (grid_[y][x] == '#') {
         std::cout << "Modify maze failed, position blocked!" << std::endl;
         return;
@@ -59,7 +59,7 @@ void Maze::ModifyMazePosition(int x, int y, char c) {
     grid_[y][x] = c;
 }
 
-char Maze::GetMazePosition(int x, int y) const {
+char Maze::GetMazePosition(const int &x, const int &y) const {
     return char(grid_[y][x]);
 }
 
