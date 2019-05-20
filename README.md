@@ -31,7 +31,7 @@ After these please follow on-screen instructions
 
 # UML Class Diagram
 
-![UML Class Diagram for the Project](https://github.com/nuclearczy/ENPM809Y-Final-Project/blob/master/UML%20Diagrams/Revised%20UML%20Diagrams/UML%20Class%20Diagrams/UML_Class_Overall_Project.jpg)
+![UML Class Diagram for the Project](https://github.com/nuclearczy/ENPM809Y-Final-Project/blob/master/UML%20Diagrams/Revised%20UML%20Diagrams/May%2020%2C%202019/UML%20Class%20Diagrams/UML_Class_Overall_Project.png)
 
 # UML Activity Diagrams
 
