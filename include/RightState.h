@@ -42,21 +42,19 @@
  * function is always the same for each state, but for further implementation, 
  * it can be modified here.
  */
-namespace State {
+namespace state {
     class RightState : public RobotState {
     public:
-        /*
-        @brief Inheritance RightState from RobotState
-        */
+        /* @brief Inheritance RightState from RobotState */
         RightState() : RobotState("Right") {}
 
         /*
-        @brief Push current node location into stack while update the new node
-        according to the previous move
-        */
+         * @brief Push current node location into stack while update the new node
+         * according to the previous move
+         * */
         void HandleInput(std::stack<RobotState *> &, const std::string &) override;
 
-        /*@brief Default destructor*/
+        /* @brief Default destructor */
         ~RightState() override = default;
     };
 }

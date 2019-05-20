@@ -41,23 +41,20 @@
  * HandleInput function realization. Although in this program, the HandleInput  
  * function is always the same for each state, but for further implementation, 
  * it can be modified here.
- */
+ * */
 
-namespace State {
+namespace state {
     class LeftState : public RobotState {
     public:
-        /*
-        @brief Inheritance LeftState from RobotState
-        */
+        /* @brief Inheritance LeftState from RobotState */
         LeftState() : RobotState("Left") {}
 
-        /*
-        @brief Push current node location into stack while update the new node
-        according to the previous move
-        */
+        /* @brief Push current node location into stack while update the new node
+         * according to the previous move
+         * */
         void HandleInput(std::stack<RobotState *> &, const std::string &) override;
 
-        /*@brief Default destructor*/
+        /* @brief Default destructor */
         ~LeftState() override = default;
     };
 }

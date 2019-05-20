@@ -58,19 +58,18 @@ public:
      */
     virtual void HandleInput(const std::string &input) = 0;
 
-    /* @brief Virutal function to print the stack.*/
+    /* @brief Virtual function to print the stack.*/
     virtual void ShowStack() = 0;
 
     /*
-    @brief Function to get name.
-    @return name of the robot
-    */
-    std::string GetName();
+     * @brief Function to get name.
+     * @return name of the robot
+     * */
+    std::string get_name();
 
 private:
     /* @brief Name member for the robot.*/
-    std::string name;
-
+    std::string name_;
 };
 
 #endif // ENPM809Y_PROJECT_5_MOBILEROBOT_H

@@ -42,31 +42,31 @@
 #include "../include/TrackedRobot.h"
 
 MobileRobot::MobileRobot(std::string RobotName) {
-    name = std::move(RobotName);
+    name_ = std::move(RobotName);
 }
 
 void WheeledRobot::HandleInput(const std::string &input) {
-    State::RobotState *state = new State::UpState();
+    state::RobotState *state = new state::UpState();
 
-    if (RobotStack_.empty())
-        state->HandleInput(RobotStack_, input);
+    if (robot_stack_.empty())
+        state->HandleInput(robot_stack_, input);
     else
-        RobotStack_.top()->HandleInput(RobotStack_, input);
+        robot_stack_.top()->HandleInput(robot_stack_, input);
     delete state;
 }
 
 void TrackedRobot::HandleInput(const std::string &input) {
-    State::RobotState *state = new State::UpState();
+    state::RobotState *state = new state::UpState();
 
-    if (RobotStack_.empty())
-        state->HandleInput(RobotStack_, input);
+    if (robot_stack_.empty())
+        state->HandleInput(robot_stack_, input);
     else
-        RobotStack_.top()->HandleInput(RobotStack_, input);
+        robot_stack_.top()->HandleInput(robot_stack_, input);
     delete state;
 }
 
 void WheeledRobot::ShowStack() {
-    auto s = RobotStack_;
+    auto s = robot_stack_;
     while (s.size() > 1) {
         printf("%s\n", s.top()->get_name().c_str());
         s.pop();
@@ -75,7 +75,7 @@ void WheeledRobot::ShowStack() {
 }
 
 void TrackedRobot::ShowStack() {
-    auto s = RobotStack_;
+    auto s = robot_stack_;
     while (s.size() > 1) {
         printf("%s\n", s.top()->get_name().c_str());
         s.pop();
@@ -83,13 +83,13 @@ void TrackedRobot::ShowStack() {
     printf("\n");
 }
 
-std::string MobileRobot::GetName() {
-    return name;
+std::string MobileRobot::get_name() {
+    return name_;
 }
 
 // UpState::UpState()
 
-void State::UpState::HandleInput(std::stack<State::RobotState *> &stack_,
+void state::UpState::HandleInput(std::stack<state::RobotState *> &stack_,
                                  const std::string &input) {
     if (stack_.empty()) {
         stack_.push(this);
@@ -112,7 +112,7 @@ void State::UpState::HandleInput(std::stack<State::RobotState *> &stack_,
     }
 }
 
-void State::DownState::HandleInput(std::stack<State::RobotState *> &stack_,
+void state::DownState::HandleInput(std::stack<state::RobotState *> &stack_,
                                    const std::string &input) {
     if (stack_.empty()) {
         stack_.push(this);
@@ -135,7 +135,7 @@ void State::DownState::HandleInput(std::stack<State::RobotState *> &stack_,
     }
 }
 
-void State::LeftState::HandleInput(std::stack<RobotState *> &stack_,
+void state::LeftState::HandleInput(std::stack<RobotState *> &stack_,
                                    const std::string &input) {
     if (stack_.empty()) {
         stack_.push(this);
@@ -158,7 +158,7 @@ void State::LeftState::HandleInput(std::stack<RobotState *> &stack_,
     }
 }
 
-void State::RightState::HandleInput(std::stack<State::RobotState *> &stack_,
+void state::RightState::HandleInput(std::stack<state::RobotState *> &stack_,
                                     const std::string &input) {
     if (stack_.empty()) {
         stack_.push(this);

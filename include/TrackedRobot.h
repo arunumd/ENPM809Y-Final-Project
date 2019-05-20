@@ -40,20 +40,19 @@
 /*
  * @brief The WheeledRobot class handles state inputs and stores state stack 
  * for the pushdown automata.
- */
+ * */
 class TrackedRobot : public MobileRobot {
 public:
-    /*
-	@brief Constructor to initialize the name as "Tracked Robot".
-	*/
+    /* @brief Constructor to initialize the name as "Tracked Robot". */
     TrackedRobot() : MobileRobot("Tracked Robot") {};
 
     /* @brief Default destructor*/
     ~TrackedRobot() = default;
 
-    /* @brief Virtual function to handle input.
+    /*
+     * @brief Virtual function to handle input.
      * @param input - input robot state.
-     */
+     * */
     void HandleInput(const std::string &input) override;
 
     /* @brief Function to print the stack.*/
@@ -62,8 +61,8 @@ public:
 private:
     /* @brief Stack to store robot states for the
      * pushdown automata.
-     */
-    std::stack<State::RobotState *> RobotStack_;
+     * */
+    std::stack<state::RobotState *> robot_stack_;
 };
 
 #endif // ENPM809Y_PROJECT_5_TRACKEDROBOT_H

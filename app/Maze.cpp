@@ -43,12 +43,12 @@
 #include "../include/WheeledRobot.h"
 #include "../include/TrackedRobot.h"
 
-int Maze::GetLength() const {
-    return length;
+int Maze::get_length() const {
+    return length_;
 }
 
-int Maze::GetWidth() const {
-    return width;
+int Maze::get_width() const {
+    return width_;
 }
 
 void Maze::ModifyMazePosition(const int &x, const int &y, const char &c) {
@@ -71,12 +71,12 @@ void Maze::SetStartGoal(const int &start_x, const int &start_y,
 
 void Maze::ShowMaze() const {
     std::cout << "\n\n\n";
-    for (int i = width - 1; i >= 0; i--) {
+    for (int i = width_ - 1; i >= 0; i--) {
         if (i >= 10)
             std::cout << i << " ";
         else
             std::cout << i << "  ";
-        for (int j = 0; j < length; j++) {
+        for (int j = 0; j < length_; j++) {
             std::cout << grid_[i][j] << " ";
         }
         std::cout << std::endl;
@@ -85,7 +85,7 @@ void Maze::ShowMaze() const {
     for (int k = 0; k <= 9; k++) {
         std::cout << k << " ";
     }
-    for (int l = 10; l < length; l++) {
+    for (int l = 10; l < length_; l++) {
         std::cout << l << "";
     }
     std::cout << std::endl;
@@ -320,6 +320,6 @@ void Maze::BuildStack(const std::shared_ptr<MobileRobot> &robot_in_maze) {
             }
         }
     } else {
-        std::cout << "No path for " << robot_in_maze->GetName() << std::endl;
+        std::cout << "No path for " << robot_in_maze->get_name() << std::endl;
     }
 }

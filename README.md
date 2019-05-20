@@ -31,13 +31,13 @@ After these please follow on-screen instructions
 
 # UML Class Diagram
 
-![UML Class Diagram for the Project](https://github.com/nuclearczy/ENPM809Y-Final-Project/blob/master/UML%20Diagrams/Revised%20UML%20Diagrams/UML%20Class%20Diagrams/UML_Class_Overall_Project.jpg)
+![UML Class Diagram for the Project](https://github.com/nuclearczy/ENPM809Y-Final-Project/blob/master/UML%20Diagrams/Revised%20UML%20Diagrams/May%2020%2C%202019/UML%20Class%20Diagrams/UML_Class_Overall_Project.png)
 
 # UML Activity Diagrams
 
 **Complete Project Pipeline**
 
-![UML Activity Diagram for the Project](https://github.com/nuclearczy/ENPM809Y-Final-Project/blob/master/UML%20Diagrams/Revised%20UML%20Diagrams/UML%20Activity%20Diagram/UML_Activity_Diagram_Overall_Project.jpg)
+![UML Activity Diagram for the Project](https://github.com/nuclearczy/ENPM809Y-Final-Project/blob/master/UML%20Diagrams/Revised%20UML%20Diagrams/May%2020%2C%202019/UML%20Activity%20Diagram/UML_Activity_Diagram_Overall_Project.jpg)
 
 **A - Star Algorithm Pipeline**
-![UML Activity Diagram for A - Star Algorithm](https://github.com/nuclearczy/ENPM809Y-Final-Project/blob/master/UML%20Diagrams/Revised%20UML%20Diagrams/UML%20Activity%20Diagram/UML_Activity_Diagram_A_Star_Algorithm.jpg)
+![UML Activity Diagram for A - Star Algorithm](https://github.com/nuclearczy/ENPM809Y-Final-Project/blob/master/UML%20Diagrams/Revised%20UML%20Diagrams/May%2020%2C%202019/UML%20Activity%20Diagram/UML_Activity_Diagram_A_Star_Algorithm.jpg)
