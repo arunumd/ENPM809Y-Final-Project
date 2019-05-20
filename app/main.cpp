@@ -41,20 +41,19 @@
 
 int main() {
     int is_both_blocked = 1;
-    while(is_both_blocked){
+    while (is_both_blocked) {
         Target missions;
         missions.SetPositions();
         missions.AssignTasks();
         int is_wheeled_blocked = missions.GoWheeled();
         int is_tracked_blocked = missions.GoTracked();
-        if(is_wheeled_blocked == 0 or is_tracked_blocked == 0){
+        if (is_wheeled_blocked == 0 or is_tracked_blocked == 0) {
             is_both_blocked = 0;
             missions.PlotMaze();
-        }
-        else {
-            std::cout<<"\n\nNo path for both robots, please try again.\n\n";
+        } else {
+            std::cout << "\n\nNo path for both robots, please try again.\n\n";
         }
     }
-    std::cout<<"\nAt least one path has been found! \nProgram finished.\n\n";
+    std::cout << "\nAt least one path has been found! \nProgram finished.\n\n";
     return 0;
 }

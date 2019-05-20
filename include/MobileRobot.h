@@ -40,8 +40,7 @@
  * @brief The MobileRobot class is the base class for WheeledRobot class and
  * TrackedRobot.
  */
-class MobileRobot
-{
+class MobileRobot {
 public:
     /* @brief Default constructor */
     MobileRobot() = default;
@@ -57,7 +56,7 @@ public:
     /* @brief Virtual function to handle input.
      * @param input - input robot state.
      */
-    virtual void HandleInput(const std::string& input) = 0;
+    virtual void HandleInput(const std::string &input) = 0;
 
     /* @brief Virutal function to print the stack.*/
     virtual void ShowStack() = 0;
@@ -68,7 +67,6 @@ public:
     */
     std::string GetName();
 
-   
 private:
     /* @brief Name member for the robot.*/
     std::string name;

@@ -53,6 +53,8 @@ void Target::AssignLocations(std::array<Location *, 4> &palette,
         } else if (tempMaze.IsNotObstacle(std::make_pair(palette[index]->x, palette[index]->y)))
             break;
         else {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
             std::cout << "Position is blocked, please try again." << std::endl;
             continue;
         }

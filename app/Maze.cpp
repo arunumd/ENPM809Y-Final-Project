@@ -64,7 +64,7 @@ char Maze::GetMazePosition(const int &x, const int &y) const {
 }
 
 void Maze::SetStartGoal(const int &start_x, const int &start_y,
-                         const int &goal_x, const int &goal_y) {
+                        const int &goal_x, const int &goal_y) {
     start_ = std::make_pair(start_x, start_y);
     goal_ = std::make_pair(goal_x, goal_y);
 }
@@ -127,9 +127,9 @@ bool Maze::IsWithinRegion(const std::pair<int, int> &node) const {
 }
 
 const int Maze::TakeDecision1(const std::pair<int, int> &new_node,
-                               const double &cost_g,
-                               ListInfo &info,
-                               const std::pair<int, int> &parent_node) {
+                              const double &cost_g,
+                              ListInfo &info,
+                              const std::pair<int, int> &parent_node) {
     if (IsWithinRegion(new_node) && IsNotObstacle(new_node)) {
         info.cost_h = CalculateDistance(new_node);
         info.cost_g = cost_g + 1;
@@ -148,9 +148,9 @@ const int Maze::TakeDecision1(const std::pair<int, int> &new_node,
 }
 
 const int Maze::TakeDecision2(const std::pair<int, int> &new_node,
-                               const double &cost_g,
-                               ListInfo &info,
-                               const std::pair<int, int> &parent_node) {
+                              const double &cost_g,
+                              ListInfo &info,
+                              const std::pair<int, int> &parent_node) {
     //< If the node is already there in closed list, then skip
     if (closed_list_.find(new_node) != closed_list_.end()) {
         if (new_node == goal_)
@@ -290,7 +290,7 @@ int Maze::PlotTrajectory(const char &path_icon) {
             node = closed_list_.find(parent)->second.node;
             parent = closed_list_.find(parent)->second.parent;
         }
-    return 0; // Return 0 for a path exists.
+        return 0; // Return 0 for a path exists.
     } else {
         return 1; // Return 1 for no path exists.
     }

@@ -93,7 +93,7 @@ public:
     /*
      * @brief Helper function to assign target locations and robot locations
      */
-    void AssignLocations(std::array<Location*, 4>&, const int&, const int&, const int&);
+    void AssignLocations(std::array<Location *, 4> &, const int &, const int &, const int &);
 
 private:
     /* @brief Creates object wheeled for Location class */
