@@ -44,7 +44,7 @@
 /*
  *@brief Define data structure that contain location (cartesian coordinates)
  *for robot and target locations
- */
+ * */
 struct Location {
     int x = -1;
     int y = -1;
@@ -52,82 +52,70 @@ struct Location {
 
 class Target {
 public:
-    /*
-	@brief  Define default constructor
-	*/
+    /* @brief  Define default constructor */
     Target() = default;
 
-    /*
-	@brief  Define default destructor
-	*/
+    /* @brief  Define default destructor */
     ~Target() = default;
 
     /*
-	@brief Asks user for tracked, wheeled robot starting point
-	and plate, bottle goal point. Input check will be conducted
-	to see if the given node is out of maze or blocked
-	*/
+     * @brief Asks user for tracked, wheeled robot starting point
+     * and plate, bottle goal point. Input check will be conducted
+     * to see if the given node is out of maze or blocked
+     * */
     void SetPositions();
 
     /*
-	@brief Assign task for tracked and wheeled robot to pick up
-	plant and bottle
-	*/
+     * @brief Assign task for tracked and wheeled robot to pick up
+     * plant and bottle
+     * */
     void AssignTasks();
 
-    /*
-	@brief Initiates A* algorithm for wheeled robot and show the result
-	*/
+    /* @brief Initiates A* algorithm for wheeled robot and show the result */
     int GoWheeled();
 
-    /*
-	@brief Initiates A* algorithm for wheeled robot and show the result
-	*/
+    /* @brief Initiates A* algorithm for wheeled robot and show the result */
     int GoTracked();
 
-    /*
-	@brief Plot maze with two paths found
-	*/
+    /* @brief Plot maze with two paths found */
     void PlotMaze();
 
-    /*
-     * @brief Helper function to assign target locations and robot locations
-     */
+    /* @brief Helper function to assign target locations and robot locations */
     void AssignLocations(std::array<Location *, 4> &, const int &, const int &, const int &);
 
 private:
     /* @brief Creates object wheeled for Location class */
-    Location wheeled;
+    Location wheeled_;
 
     /* @brief Creates object tracked for Location class */
-    Location tracked;
+    Location tracked_;
 
     /* @brief Creates object plate for Location class */
-    Location plate;
+    Location plate_;
 
     /* @brief Creates object bottle for Location class */
-    Location bottle;
+    Location bottle_;
 
     /* Initialize a temporary maze*/
-    Maze tempMaze;
+    Maze temp_maze_;
 
     /* Create a copy of Maze class for wheeled robot*/
-    Maze wheeledMaze;
+    Maze wheeled_maze_;
 
     /* Create a copy of Maze class for tracked robot*/
-    Maze trackedMaze;
+    Maze tracked_maze_;
 
     /* Character literal for plate*/
-    char wheeled_target = 'p';
+    char wheeled_target_ = 'p';
 
     /* Character literal for bottle*/
-    char tracked_target = 'b';
+    char tracked_target_ = 'b';
 
     /* Shared pointer for polymorphism of WheeledRobot*/
-    std::shared_ptr<MobileRobot> wheeledRobotInMaze = std::make_shared<WheeledRobot>();
+    std::shared_ptr<MobileRobot> wheeled_robot_in_maze_ = std::make_shared<WheeledRobot>();
 
     /* Shared pointer for polymorphism of TrackedRobot*/
-    std::shared_ptr<MobileRobot> trackedRobotInMaze = std::make_shared<TrackedRobot>();
+    std::shared_ptr<MobileRobot> tracked_robot_in_maze_ = std::make_shared<TrackedRobot>();
 };
 
 #endif // ENPM809Y_PROJECT_5_TARGET_H

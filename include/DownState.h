@@ -43,21 +43,18 @@
  * function is always the same for each state, but for further implementation, 
  * it can be modified here.
  */
-namespace State {
+namespace state {
     class DownState : public RobotState {
     public:
-        /*
-        @brief Inheritance DownState from RobotState
-        */
+        /* @brief Inheritance DownState from RobotState */
         DownState() : RobotState("Down") {}
 
-        /*
-        @brief Push current node location into stack while update the new node
-        according to the previous move
-        */
+        /* @brief Push current node location into stack while update the new node
+         * according to the previous move
+         * */
         void HandleInput(std::stack<RobotState *> &, const std::string &) override;
 
-        /*@brief Default destructor*/
+        /* @brief Default destructor */
         ~DownState() override = default;
     };
 }

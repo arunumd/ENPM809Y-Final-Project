@@ -99,158 +99,171 @@ public:
     ~Maze() = default;
 
     /*
-	@brief Visualized the Maze by print it out on console
-	*/
+     * @brief Visualizes the Maze by printing it out to the console
+     * */
     void ShowMaze() const;
 
     /*
-	@brief Retrieve the char value stored in maze at given coordinate (x,y)
-	@param x - x coordinate of node
-	@param y - y coordinate of node
-	@return stored char value in location (x,y)
-	*/
+     * @brief Retrieves the char value stored in maze at given coordinate (x,y)
+     * @param x - x coordinate of node
+     * @param y - y coordinate of node
+     * @return stored char value in location (x,y)
+     * */
     char GetMazePosition(const int &x, const int &y) const;
 
     /*
-	@brief Modify the char value stored to given char value c in maze at given coordinate (x,y)
-	@param x - x coordinate of node
-	@param y - y coordinate of node
-	@param c - the char value user wish to modified to
-	*/
+     * @brief Modifies the char value stored to given char
+     * value c in maze at given coordinate (x,y)
+     * @param x - x coordinate of node
+     * @param y - y coordinate of node
+     * @param c - the char value user wish to modified to
+     * */
     void ModifyMazePosition(const int &x, const int &y, const char &c);
 
     /*
-	@brief set start and goal location
-	@param start_x - x coordinate of start node
-	@param start_y - y coordinate of start node
-	@param goal_x - x coordinate of goal node
-	@param goal_y - y coordinate of goal node
-	*/
+     * @brief Sets the start and goal locations
+     * @param start_x - x coordinate of start node
+     * @param start_y - y coordinate of start node
+     * @param goal_x - x coordinate of goal node
+     * @param goal_y - y coordinate of goal node
+     * */
     void SetStartGoal(const int &, const int &, const int &, const int &);
 
     /*
-	@brief build stack of moving sequence
-	@param robot_in_maze - pointer of robot object, polymorphism takes place
+     * @brief build stack of moving sequence
+     * @param robot_in_maze - pointer of robot object, polymorphism takes place
      * inside this function.
-	*/
+     * */
     void BuildStack(const std::shared_ptr<MobileRobot> &robot_in_maze);
 
     /*
-	@brief Get next node location given current node location when go up
-	@param node - coordinate of current node
-	@return next node location
-	*/
+     * @brief Get next node location given current node location when going up
+     * @param node - coordinate of current node
+     * @return next node location
+     * */
     std::pair<int, int> North(const std::pair<int, int> &node) const;
 
     /*
-	@brief Get next node location given current node location when go right
-	@param node - coordinate of current node
-	@return next node location
-	*/
+     * @brief Get next node location given current node location when going right
+     * @param node - coordinate of current node
+     * @return next node location
+     * */
     std::pair<int, int> East(const std::pair<int, int> &node) const;
 
     /*
-	@brief Get next node location given current node location when go left
-	@param node - coordinate of current node
-	@return next node location
-	*/
+     * @brief Get next node location given current node location when going left
+     * @param node - coordinate of current node
+     * @return next node location
+     * */
     std::pair<int, int> West(const std::pair<int, int> &node) const;
 
     /*
-	@brief Get next node location given current node location when go down
-	@param node - coordinate of current node
-	@return next node location
-	*/
+     * @brief Get next node location given current node location when going down
+     * @param node - coordinate of current node
+     * @return next node location
+     * */
     std::pair<int, int> South(const std::pair<int, int> &node) const;
 
     /*
-	@brief make decision for initial move since there is no restriction from
-	previous move
-	@param new_node - coordinate of new node
-	@param cost_g - cost to go so far
-	@param ListInfo - information on current node including cost to go, distance
-	to target, current node location and parent node location
-	@param parent_node - coordinate of parent node
-	@return 1 if the move is better and -1 if else
-	*/
+     * @brief When the A* algorithm begins for the first time, there is no possibility
+     * that any of the generated nodes (four nodes from North, East, West and South movements)
+     * will be present in the closed_list_ or the priority_list_. Hence if the new nodes are
+     * valid nodes (they do not fall in obstacle space and they are within the scope of the
+     * environment, we just add them to the priority_list_.
+     * @param new_node - coordinate of new node
+     * @param cost_g - cost to go so far
+     * @param ListInfo - information on current node including cost to go, distance
+     * to target, current node location and parent node location
+     * @param parent_node - coordinate of parent node
+     * @return 1 if the move is better and -1 if else
+     * */
     const int TakeDecision1(const std::pair<int, int> &new_node, const double &cost_g,
                             ListInfo &info, const std::pair<int, int> &parent_node);
 
     /*
-	@brief make decision for initial move while check if satisfied restriction from
-	previous move
-	@param new_node - coordinate of new node
-	@param cost_g - cost to go so far
-	@param ListInfo - information on current node including cost to go, distance
-	to target, current node location and parent node location
-	@parent_node - coordinate of parent node
-	@return 1 if the move is better and -1 if else
-	*/
+     * @brief When the A* algorithm goes beyond the first generation of nodes, there are already
+     * some nodes which have been added to the priority_list_ and the closed_list_. Hence, for
+     * all new to-be-generated nodes, we have to do a variety of checks which include the following :
+     *    - The newly generated node is not present in the closed_list_;
+     *    - The newly generated node is not in obstacle space3;
+     *    - The newly generated node is not outside the region of the maze;
+     *    - The newly generated node is not already present in the priority_list_. If it is
+     *    already present, then its cost g, cost h and cost f should be lesser than the currently
+     *    generated node. If not, then all its information (cost g, cost h, cost f and parent node)
+     *    must be reassigned with the information from the currently generated node
+     * @param new_node - coordinate of new node
+     * @param cost_g - cost to go so far
+     * @param ListInfo - information on current node including cost to go, distance
+     * to target, current node location and parent node location
+     * @parent_node - coordinate of parent node
+     * @return 1 if the move is better and -1 if else
+     * */
     const int TakeDecision2(const std::pair<int, int> &new_node, const double &cost_g,
                             ListInfo &info, const std::pair<int, int> &parent_node);
 
     /*
-	@brief main body of A* algorithm, initialized the process and iterate to update the
-	priority list until the path is found
-	@param cost_g - cost to go
-	@param cost_h - cost to come
-	@param total_cost - total cost estimation
-	@param node - current node location
-	@param parent - parent node location
-	@return 1 if the path is found and -1 if else
-	*/
+     * @brief The Action method triggers the entire A* algorithm. The method initially
+     * assumes the start node as the current node and then generates four daughters using the
+     * helper functions (North, East, West and South). The generated daughters are checked if
+     * they can be valid next states and then pushed to priority_list_ and open_list_. Next,
+     * the member with lowest cost f is popped from the priority_list_ and open_list_; added
+     * to closed_list_; and again four new daughters are generated. This process repeats
+     * cyclically until the algorithm finds a generated node is the goal node or until the
+     * priority_list_ becomes empty, whichever occurs first.
+     * @param cost_g - cost to go
+     * @param cost_h - cost to come
+     * @param total_cost - total cost estimation
+     * @param node - current node location
+     * @param parent - parent node location
+     * @return 1 if the path is found and -1 if else
+     * */
     int Action();
 
     /*
-	@brief compute the euclidean distance between given current node and goal node
-	@param current_node - coordinate of current node
-	@return the euclidean distance between given current node and goal node
-	*/
+     * @brief Computes the euclidean distance between given current node and goal node
+     * @param current_node - coordinate of current node
+     * @return the euclidean distance between given current node and goal node
+     * */
     const double CalculateDistance(const std::pair<int, int> &current_node) const;
 
     /*
-	@brief check if given node is not an obstacle
-	@param node - coordinate of node to be checked
-	@return false if the node is a wall, true if else
-	*/
+     * @brief Checks if given node is not an obstacle
+     * @param node - coordinate of node to be checked
+     * @return false if the node is a wall, true if else
+     * */
     bool IsNotObstacle(const std::pair<int, int> &node) const;
 
     /*
-	@brief check if given node is within the maze
-	@param node - coordinate of node to be checked
-	@return false if the node is within the maze, true if else
-	*/
+     * @brief Checks if given node is within the maze
+     * @param node - coordinate of node to be checked
+     * @return false if the node is within the maze, true if else
+     * */
     bool IsWithinRegion(const std::pair<int, int> &node) const;
 
     /*
-	@brief Plot the path yield from A* algorithm
-	@param path_icon - - or + for tracked or wheeled robots
-	*/
+     * @brief Plots the path yield by the A* algorithm
+     * @param path_icon - - or + for tracked or wheeled robots
+     * */
     int PlotTrajectory(const char &path_icon);
 
     /*
-	@brief Get the length of the maze.
-    @return length of the maze
-	*/
-    int GetLength() const;
+     * @brief Gets the length of the maze.
+     * @return length of the maze
+     * */
+    int get_length() const;
 
     /*
-	@brief Get the width of the maze.
-    @return width of the maze
-	*/
-    int GetWidth() const;
-
+     * @brief Gets the width of the maze.
+     * @return width of the maze
+     * */
+    int get_width() const;
 
 private:
-    /*
-	@brief Pre-define width as 31 due to the fact the maze is given
-	*/
-    const int width = 31;
+    /* @brief Pre-define width as 31 due to the fact the maze is given */
+    const int width_ = 31;
 
-    /*
-	@brief Pre-define length as 46 due to the fact the maze is given
-	*/
-    const int length = 46;
+    /* @brief Pre-define length as 46 due to the fact the maze is given */
+    const int length_ = 46;
 
     /* @brief Our maze representation*/
     std::array<std::string, 31> grid_;
