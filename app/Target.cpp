@@ -45,18 +45,43 @@
 void Target::AssignLocations(std::array<Location *, 4> &palette,
                              const int &index, const int &l, const int &w) {
     while (true) {
-        std::cin >> palette[index]->x >> palette[index]->y;
+        std::cin >> palette[index]->x;
+        if (std::cin.fail()) {
+            std::cout << "Invalid x coordinate. "
+                         "Please enter x and y in space "
+                         "separated format again" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            continue;
+        }
+        std::cin >> palette[index]->y;
+        if (std::cin.fail()) {
+            std::cout << "Invalid y coordinate. "
+                         "Please enter x and y in space "
+                         "separated format again" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            continue;
+        }
         if (palette[index]->x >= l || palette[index]->x < 0 ||
             palette[index]->y >= w || palette[index]->y < 0) {
-            std::cout << "Position out of maze, please try again." << std::endl;
+            std::cout << "Position out of maze, "
+                         "Please enter x and y in space "
+                         "separated format again" << std::endl;
+            palette[index]->x = -10;
+            palette[index]->y = -10;
             continue;
         } else if (temp_maze_.IsNotObstacle(std::make_pair(palette[index]->x,
-                                                         palette[index]->y)))
+                                                           palette[index]->y)))
             break;
         else {
             std::cin.clear();
             std::cin.ignore(10000, '\n');
-            std::cout << "Position is blocked, please try again." << std::endl;
+            std::cout << "Position is blocked, "
+                         "Please enter x and y in space "
+                         "separated format again" << std::endl;
+            palette[index]->x = -10;
+            palette[index]->y = -10;
             continue;
         }
     }
