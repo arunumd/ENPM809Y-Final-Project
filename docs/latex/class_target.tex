@@ -1,0 +1,51 @@
+\hypertarget{class_target}{}\section{Target Class Reference}
+\label{class_target}\index{Target@{Target}}
+
+
+The \mbox{\hyperlink{class_target}{Target}} class has composition of all other classes for triggering the whole project. Specifically, it creates two copies of the \mbox{\hyperlink{class_maze}{Maze}} class, for the two robots (Wheeled and Tracked). It then takes in user input for locations of robots and targets. Later it triggers the A$\ast$ algorithm from the \mbox{\hyperlink{class_maze}{Maze}} class to find out the optimal paths (if they exist). If there are zero paths found, then \mbox{\hyperlink{class_target}{Target}} class will ask for fresh user inputs for alternate locations.  
+
+
+
+
+{\ttfamily \#include $<$Target.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_target_ace5b2cdf7653114127fe251b60a21315}\label{class_target_ace5b2cdf7653114127fe251b60a21315}} 
+\mbox{\hyperlink{class_target_ace5b2cdf7653114127fe251b60a21315}{Target}} ()=default
+\begin{DoxyCompactList}\small\item\em Define default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_target_a060fe6f86a639f3494f4f3e8c9ffe2dc}\label{class_target_a060fe6f86a639f3494f4f3e8c9ffe2dc}} 
+\mbox{\hyperlink{class_target_a060fe6f86a639f3494f4f3e8c9ffe2dc}{$\sim$\+Target}} ()=default
+\begin{DoxyCompactList}\small\item\em Define default destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_target_a103b036c289d88d0bf64b8ba53a107a4}\label{class_target_a103b036c289d88d0bf64b8ba53a107a4}} 
+void \mbox{\hyperlink{class_target_a103b036c289d88d0bf64b8ba53a107a4}{Set\+Positions}} ()
+\begin{DoxyCompactList}\small\item\em Asks user for tracked, wheeled robot starting point and plate, bottle goal point. Input check will be conducted to see if the given node is out of maze or blocked. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_target_aa6bf223ceb194b7eeea72f15afd0393f}\label{class_target_aa6bf223ceb194b7eeea72f15afd0393f}} 
+void \mbox{\hyperlink{class_target_aa6bf223ceb194b7eeea72f15afd0393f}{Assign\+Tasks}} ()
+\begin{DoxyCompactList}\small\item\em Assign task for tracked and wheeled robot to pick up plant and bottle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_target_a35aed209d4dd1dadcc899bf76793baa3}\label{class_target_a35aed209d4dd1dadcc899bf76793baa3}} 
+int \mbox{\hyperlink{class_target_a35aed209d4dd1dadcc899bf76793baa3}{Go\+Wheeled}} ()
+\begin{DoxyCompactList}\small\item\em Initiates A$\ast$ algorithm for wheeled robot and show the result. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_target_a318232053512e25d6f1019cc88f5d6d8}\label{class_target_a318232053512e25d6f1019cc88f5d6d8}} 
+int \mbox{\hyperlink{class_target_a318232053512e25d6f1019cc88f5d6d8}{Go\+Tracked}} ()
+\begin{DoxyCompactList}\small\item\em Initiates A$\ast$ algorithm for wheeled robot and show the result. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_target_a3d2cf10509fc6e109b4fc45b580d7671}\label{class_target_a3d2cf10509fc6e109b4fc45b580d7671}} 
+void \mbox{\hyperlink{class_target_a3d2cf10509fc6e109b4fc45b580d7671}{Plot\+Maze}} ()
+\begin{DoxyCompactList}\small\item\em Plot maze with two paths found. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_target_a51f58de7a9d5a67dac0172480f4a1dae}\label{class_target_a51f58de7a9d5a67dac0172480f4a1dae}} 
+void \mbox{\hyperlink{class_target_a51f58de7a9d5a67dac0172480f4a1dae}{Assign\+Locations}} (std\+::array$<$ \mbox{\hyperlink{struct_location}{Location}} $\ast$, 4 $>$ \&, const int \&, const int \&, const int \&)
+\begin{DoxyCompactList}\small\item\em Helper function to assign target locations and robot locations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \mbox{\hyperlink{class_target}{Target}} class has composition of all other classes for triggering the whole project. Specifically, it creates two copies of the \mbox{\hyperlink{class_maze}{Maze}} class, for the two robots (Wheeled and Tracked). It then takes in user input for locations of robots and targets. Later it triggers the A$\ast$ algorithm from the \mbox{\hyperlink{class_maze}{Maze}} class to find out the optimal paths (if they exist). If there are zero paths found, then \mbox{\hyperlink{class_target}{Target}} class will ask for fresh user inputs for alternate locations. 
+
+Definition at line 46 of file Target.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_target_8h}{Target.\+h}}\item 
+app/Target.\+cpp\end{DoxyCompactItemize}

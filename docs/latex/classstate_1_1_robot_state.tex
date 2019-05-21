@@ -1,0 +1,102 @@
+\hypertarget{classstate_1_1_robot_state}{}\section{state\+::Robot\+State Class Reference}
+\label{classstate_1_1_robot_state}\index{state::RobotState@{state::RobotState}}
+Inheritance diagram for state\+::Robot\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classstate_1_1_robot_state}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classstate_1_1_robot_state_a82c70d0b51eb4ddca9de1ca49ae29e3e}{Handle\+Input}} (std\+::stack$<$ \mbox{\hyperlink{classstate_1_1_robot_state}{Robot\+State}} $\ast$ $>$ \&, const std\+::string \&)=0
+\begin{DoxyCompactList}\small\item\em Process input and move the robot to the next node according to the given \mbox{\hyperlink{classstate_1_1_robot_state}{Robot\+State}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classstate_1_1_robot_state_a7e7996ffa8c255402453c158a975ad5e}{Robot\+State}} (std\+::string name=\char`\"{}Robot\+State\char`\"{})
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classstate_1_1_robot_state}{Robot\+State}} class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classstate_1_1_robot_state_a31149246091b8513f41c94fcb13cd9b8}\label{classstate_1_1_robot_state_a31149246091b8513f41c94fcb13cd9b8}} 
+virtual \mbox{\hyperlink{classstate_1_1_robot_state_a31149246091b8513f41c94fcb13cd9b8}{$\sim$\+Robot\+State}} ()=default
+\begin{DoxyCompactList}\small\item\em Define default destructor. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classstate_1_1_robot_state_a27cf3f1f71159bf37f1ea7c0597837dc}{get\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Get name value as string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 27 of file Robot\+State.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classstate_1_1_robot_state_a7e7996ffa8c255402453c158a975ad5e}\label{classstate_1_1_robot_state_a7e7996ffa8c255402453c158a975ad5e}} 
+\index{state::RobotState@{state::RobotState}!RobotState@{RobotState}}
+\index{RobotState@{RobotState}!state::RobotState@{state::RobotState}}
+\subsubsection{\texorpdfstring{RobotState()}{RobotState()}}
+{\footnotesize\ttfamily state\+::\+Robot\+State\+::\+Robot\+State (\begin{DoxyParamCaption}\item[{std\+::string}]{name = {\ttfamily \char`\"{}RobotState\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Default constructor for \mbox{\hyperlink{classstate_1_1_robot_state}{Robot\+State}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+\_\+} & -\/ name of \mbox{\hyperlink{classstate_1_1_robot_state}{Robot\+State}} \\
+\hline
+{\em stack} & -\/ address of stack to gain access to the value while out of scope \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file Robot\+State.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classstate_1_1_robot_state_a27cf3f1f71159bf37f1ea7c0597837dc}\label{classstate_1_1_robot_state_a27cf3f1f71159bf37f1ea7c0597837dc}} 
+\index{state::RobotState@{state::RobotState}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!state::RobotState@{state::RobotState}}
+\subsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string state\+::\+Robot\+State\+::get\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get name value as string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & of \mbox{\hyperlink{classstate_1_1_robot_state}{Robot\+State}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+name of \mbox{\hyperlink{classstate_1_1_robot_state}{Robot\+State}} as string 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file Robot\+State.\+h.
+
+\mbox{\Hypertarget{classstate_1_1_robot_state_a82c70d0b51eb4ddca9de1ca49ae29e3e}\label{classstate_1_1_robot_state_a82c70d0b51eb4ddca9de1ca49ae29e3e}} 
+\index{state::RobotState@{state::RobotState}!HandleInput@{HandleInput}}
+\index{HandleInput@{HandleInput}!state::RobotState@{state::RobotState}}
+\subsubsection{\texorpdfstring{HandleInput()}{HandleInput()}}
+{\footnotesize\ttfamily virtual void state\+::\+Robot\+State\+::\+Handle\+Input (\begin{DoxyParamCaption}\item[{std\+::stack$<$ \mbox{\hyperlink{classstate_1_1_robot_state}{Robot\+State}} $\ast$ $>$ \&}]{,  }\item[{const std\+::string \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Process input and move the robot to the next node according to the given \mbox{\hyperlink{classstate_1_1_robot_state}{Robot\+State}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & -\/ sequence of move instruction \\
+\hline
+{\em stack} & -\/ address of stack to gain access to the value while out of scope \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classstate_1_1_down_state_a6b88c8daa7c19c8056abb98891a3edf6}{state\+::\+Down\+State}}, \mbox{\hyperlink{classstate_1_1_left_state_a84a06ad4009e0522914889aebf0716d7}{state\+::\+Left\+State}}, \mbox{\hyperlink{classstate_1_1_right_state_a0ff6150d22215deb086531a13b7cc632}{state\+::\+Right\+State}}, and \mbox{\hyperlink{classstate_1_1_up_state_a746735aca849615d4f34e5e511f28cb3}{state\+::\+Up\+State}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_robot_state_8h}{Robot\+State.\+h}}\end{DoxyCompactItemize}

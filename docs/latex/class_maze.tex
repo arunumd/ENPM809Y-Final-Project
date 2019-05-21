@@ -1,0 +1,463 @@
+\hypertarget{class_maze}{}\section{Maze Class Reference}
+\label{class_maze}\index{Maze@{Maze}}
+
+
+The \mbox{\hyperlink{class_maze}{Maze}} class contains the search based A$\ast$ navigation algorithm for solving our path finding problem. The algorithm accepts a start position and goal position and finds a shortest path. The complexity of our algorithm is O(log n) because we use only one for loop to iterate through entries of priority list\+\_\+. The algorithm finds the shortest path very quick.  
+
+
+
+
+{\ttfamily \#include $<$Maze.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_maze_a7ecf1da4b9685f97bf3110a8479e724b}\label{class_maze_a7ecf1da4b9685f97bf3110a8479e724b}} 
+\mbox{\hyperlink{class_maze_a7ecf1da4b9685f97bf3110a8479e724b}{Maze}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_maze_a691dfe062caff0cbd74338b3a5853da4}\label{class_maze_a691dfe062caff0cbd74338b3a5853da4}} 
+\mbox{\hyperlink{class_maze_a691dfe062caff0cbd74338b3a5853da4}{$\sim$\+Maze}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_maze_a5b87d8df77ff49135de2773393ef85a5}\label{class_maze_a5b87d8df77ff49135de2773393ef85a5}} 
+void \mbox{\hyperlink{class_maze_a5b87d8df77ff49135de2773393ef85a5}{Show\+Maze}} () const
+\begin{DoxyCompactList}\small\item\em Visualizes the \mbox{\hyperlink{class_maze}{Maze}} by printing it out to the console. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{class_maze_a951b00bd297fc74c0543e89a48958d39}{Get\+Maze\+Position}} (const int \&x, const int \&y) const
+\begin{DoxyCompactList}\small\item\em Retrieves the char value stored in maze at given coordinate (x,y) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_maze_a6f09383c87f09e733eac046c7a183756}{Modify\+Maze\+Position}} (const int \&x, const int \&y, const char \&c)
+\begin{DoxyCompactList}\small\item\em Modifies the char value stored to given char value c in maze at given coordinate (x,y) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_maze_abc9edd3ac225e6cdb3114d903a2de70c}{Set\+Start\+Goal}} (const int \&, const int \&, const int \&, const int \&)
+\begin{DoxyCompactList}\small\item\em Sets the start and goal locations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_maze_a7406014898ccd2dc613377b1b0f7ad60}{Build\+Stack}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_mobile_robot}{Mobile\+Robot}} $>$ \&robot\+\_\+in\+\_\+maze)
+\begin{DoxyCompactList}\small\item\em build stack of moving sequence \end{DoxyCompactList}\item 
+std\+::pair$<$ int, int $>$ \mbox{\hyperlink{class_maze_a17057893cca3bd647794171bd7bfb577}{North}} (const std\+::pair$<$ int, int $>$ \&node) const
+\begin{DoxyCompactList}\small\item\em Get next node location given current node location when going up. \end{DoxyCompactList}\item 
+std\+::pair$<$ int, int $>$ \mbox{\hyperlink{class_maze_a6c85c90908bbff0e89ffb23be8e40873}{East}} (const std\+::pair$<$ int, int $>$ \&node) const
+\begin{DoxyCompactList}\small\item\em Get next node location given current node location when going right. \end{DoxyCompactList}\item 
+std\+::pair$<$ int, int $>$ \mbox{\hyperlink{class_maze_a4c45ee7fc87f1c72bb8893106dbb0630}{West}} (const std\+::pair$<$ int, int $>$ \&node) const
+\begin{DoxyCompactList}\small\item\em Get next node location given current node location when going left. \end{DoxyCompactList}\item 
+std\+::pair$<$ int, int $>$ \mbox{\hyperlink{class_maze_a46058cfa97b0d34fd45ff3d4508731bf}{South}} (const std\+::pair$<$ int, int $>$ \&node) const
+\begin{DoxyCompactList}\small\item\em Get next node location given current node location when going down. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{class_maze_a15993fbcbcdb98d56a80d58339aae2a2}{Take\+Decision1}} (const std\+::pair$<$ int, int $>$ \&new\+\_\+node, const double \&cost\+\_\+g, \mbox{\hyperlink{struct_list_info}{List\+Info}} \&info, const std\+::pair$<$ int, int $>$ \&parent\+\_\+node)
+\begin{DoxyCompactList}\small\item\em When the A$\ast$ algorithm begins for the first time, there is no possibility that any of the generated nodes (four nodes from North, East, West and South movements) will be present in the closed\+\_\+list\+\_\+ or the priority\+\_\+list\+\_\+. Hence if the new nodes are valid nodes (they do not fall in obstacle space and they are within the scope of the environment, we just add them to the priority\+\_\+list\+\_\+. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{class_maze_a078079ce7e963896360b22651206e13f}{Take\+Decision2}} (const std\+::pair$<$ int, int $>$ \&new\+\_\+node, const double \&cost\+\_\+g, \mbox{\hyperlink{struct_list_info}{List\+Info}} \&info, const std\+::pair$<$ int, int $>$ \&parent\+\_\+node)
+\begin{DoxyCompactList}\small\item\em When the A$\ast$ algorithm goes beyond the first generation of nodes, there are already some nodes which have been added to the priority\+\_\+list\+\_\+ and the closed\+\_\+list\+\_\+. Hence, for all new to-\/be-\/generated nodes, we have to do a variety of checks which include the following \+: \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_maze_a1786d0ad38f1382bfd881ef38f53242c}{Action}} ()
+\begin{DoxyCompactList}\small\item\em The Action method triggers the entire A$\ast$ algorithm. The method initially assumes the start node as the current node and then generates four daughters using the helper functions (North, East, West and South). The generated daughters are checked if they can be valid next states and then pushed to priority\+\_\+list\+\_\+ and open\+\_\+list\+\_\+. Next, the member with lowest cost f is popped from the priority\+\_\+list\+\_\+ and open\+\_\+list\+\_\+; added to closed\+\_\+list\+\_\+; and again four new daughters are generated. This process repeats cyclically until the algorithm finds a generated node is the goal node or until the priority\+\_\+list\+\_\+ becomes empty, whichever occurs first. \end{DoxyCompactList}\item 
+const double \mbox{\hyperlink{class_maze_a63c6a579efa7406b44288b5dbc04cb02}{Calculate\+Distance}} (const std\+::pair$<$ int, int $>$ \&current\+\_\+node) const
+\begin{DoxyCompactList}\small\item\em Computes the euclidean distance between given current node and goal node. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_maze_a8536c76dd1f35dee26c3a079d81cb0b4}{Is\+Not\+Obstacle}} (const std\+::pair$<$ int, int $>$ \&node) const
+\begin{DoxyCompactList}\small\item\em Checks if given node is not an obstacle. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_maze_a06408850380011c55b73831a2d6d08e1}{Is\+Within\+Region}} (const std\+::pair$<$ int, int $>$ \&node) const
+\begin{DoxyCompactList}\small\item\em Checks if given node is within the maze. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_maze_aa5b63e5c120410dda38853a443022b52}{Plot\+Trajectory}} (const char \&path\+\_\+icon)
+\begin{DoxyCompactList}\small\item\em Plots the path yield by the A$\ast$ algorithm. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_maze_a763b16546d7ab2f18919ad1506a8dc5a}{get\+\_\+length}} () const
+\begin{DoxyCompactList}\small\item\em Gets the length of the maze. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_maze_a5210be39a897f9e9058b27ea09852a86}{get\+\_\+width}} () const
+\begin{DoxyCompactList}\small\item\em Gets the width of the maze. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \mbox{\hyperlink{class_maze}{Maze}} class contains the search based A$\ast$ navigation algorithm for solving our path finding problem. The algorithm accepts a start position and goal position and finds a shortest path. The complexity of our algorithm is O(log n) because we use only one for loop to iterate through entries of priority list\+\_\+. The algorithm finds the shortest path very quick. 
+
+Definition at line 47 of file Maze.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_maze_a1786d0ad38f1382bfd881ef38f53242c}\label{class_maze_a1786d0ad38f1382bfd881ef38f53242c}} 
+\index{Maze@{Maze}!Action@{Action}}
+\index{Action@{Action}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{Action()}{Action()}}
+{\footnotesize\ttfamily int Maze\+::\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Action method triggers the entire A$\ast$ algorithm. The method initially assumes the start node as the current node and then generates four daughters using the helper functions (North, East, West and South). The generated daughters are checked if they can be valid next states and then pushed to priority\+\_\+list\+\_\+ and open\+\_\+list\+\_\+. Next, the member with lowest cost f is popped from the priority\+\_\+list\+\_\+ and open\+\_\+list\+\_\+; added to closed\+\_\+list\+\_\+; and again four new daughters are generated. This process repeats cyclically until the algorithm finds a generated node is the goal node or until the priority\+\_\+list\+\_\+ becomes empty, whichever occurs first. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cost\+\_\+g} & -\/ cost to go \\
+\hline
+{\em cost\+\_\+h} & -\/ cost to come \\
+\hline
+{\em total\+\_\+cost} & -\/ total cost estimation \\
+\hline
+{\em node} & -\/ current node location \\
+\hline
+{\em parent} & -\/ parent node location \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the path is found and -\/1 if else 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a7406014898ccd2dc613377b1b0f7ad60}\label{class_maze_a7406014898ccd2dc613377b1b0f7ad60}} 
+\index{Maze@{Maze}!BuildStack@{BuildStack}}
+\index{BuildStack@{BuildStack}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{BuildStack()}{BuildStack()}}
+{\footnotesize\ttfamily void Maze\+::\+Build\+Stack (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_mobile_robot}{Mobile\+Robot}} $>$ \&}]{robot\+\_\+in\+\_\+maze }\end{DoxyParamCaption})}
+
+
+
+build stack of moving sequence 
+
+
+\begin{DoxyParams}{Parameters}
+{\em robot\+\_\+in\+\_\+maze} & -\/ pointer of robot object, polymorphism takes place inside this function. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 299 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a63c6a579efa7406b44288b5dbc04cb02}\label{class_maze_a63c6a579efa7406b44288b5dbc04cb02}} 
+\index{Maze@{Maze}!CalculateDistance@{CalculateDistance}}
+\index{CalculateDistance@{CalculateDistance}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{CalculateDistance()}{CalculateDistance()}}
+{\footnotesize\ttfamily const double Maze\+::\+Calculate\+Distance (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ int, int $>$ \&}]{current\+\_\+node }\end{DoxyParamCaption}) const}
+
+
+
+Computes the euclidean distance between given current node and goal node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+\_\+node} & -\/ coordinate of current node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the euclidean distance between given current node and goal node 
+\end{DoxyReturn}
+
+
+Definition at line 111 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a6c85c90908bbff0e89ffb23be8e40873}\label{class_maze_a6c85c90908bbff0e89ffb23be8e40873}} 
+\index{Maze@{Maze}!East@{East}}
+\index{East@{East}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{East()}{East()}}
+{\footnotesize\ttfamily std\+::pair$<$ int, int $>$ Maze\+::\+East (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ int, int $>$ \&}]{node }\end{DoxyParamCaption}) const}
+
+
+
+Get next node location given current node location when going right. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & -\/ coordinate of current node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+next node location 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a763b16546d7ab2f18919ad1506a8dc5a}\label{class_maze_a763b16546d7ab2f18919ad1506a8dc5a}} 
+\index{Maze@{Maze}!get\_length@{get\_length}}
+\index{get\_length@{get\_length}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{get\_length()}{get\_length()}}
+{\footnotesize\ttfamily int Maze\+::get\+\_\+length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the length of the maze. 
+
+\begin{DoxyReturn}{Returns}
+length of the maze 
+\end{DoxyReturn}
+
+
+Definition at line 46 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a5210be39a897f9e9058b27ea09852a86}\label{class_maze_a5210be39a897f9e9058b27ea09852a86}} 
+\index{Maze@{Maze}!get\_width@{get\_width}}
+\index{get\_width@{get\_width}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{get\_width()}{get\_width()}}
+{\footnotesize\ttfamily int Maze\+::get\+\_\+width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the width of the maze. 
+
+\begin{DoxyReturn}{Returns}
+width of the maze 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a951b00bd297fc74c0543e89a48958d39}\label{class_maze_a951b00bd297fc74c0543e89a48958d39}} 
+\index{Maze@{Maze}!GetMazePosition@{GetMazePosition}}
+\index{GetMazePosition@{GetMazePosition}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{GetMazePosition()}{GetMazePosition()}}
+{\footnotesize\ttfamily char Maze\+::\+Get\+Maze\+Position (\begin{DoxyParamCaption}\item[{const int \&}]{x,  }\item[{const int \&}]{y }\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the char value stored in maze at given coordinate (x,y) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & -\/ x coordinate of node \\
+\hline
+{\em y} & -\/ y coordinate of node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+stored char value in location (x,y) 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a8536c76dd1f35dee26c3a079d81cb0b4}\label{class_maze_a8536c76dd1f35dee26c3a079d81cb0b4}} 
+\index{Maze@{Maze}!IsNotObstacle@{IsNotObstacle}}
+\index{IsNotObstacle@{IsNotObstacle}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{IsNotObstacle()}{IsNotObstacle()}}
+{\footnotesize\ttfamily bool Maze\+::\+Is\+Not\+Obstacle (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ int, int $>$ \&}]{node }\end{DoxyParamCaption}) const}
+
+
+
+Checks if given node is not an obstacle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & -\/ coordinate of node to be checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false if the node is a wall, true if else 
+\end{DoxyReturn}
+
+
+Definition at line 116 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a06408850380011c55b73831a2d6d08e1}\label{class_maze_a06408850380011c55b73831a2d6d08e1}} 
+\index{Maze@{Maze}!IsWithinRegion@{IsWithinRegion}}
+\index{IsWithinRegion@{IsWithinRegion}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{IsWithinRegion()}{IsWithinRegion()}}
+{\footnotesize\ttfamily bool Maze\+::\+Is\+Within\+Region (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ int, int $>$ \&}]{node }\end{DoxyParamCaption}) const}
+
+
+
+Checks if given node is within the maze. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & -\/ coordinate of node to be checked \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false if the node is within the maze, true if else 
+\end{DoxyReturn}
+
+
+Definition at line 124 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a6f09383c87f09e733eac046c7a183756}\label{class_maze_a6f09383c87f09e733eac046c7a183756}} 
+\index{Maze@{Maze}!ModifyMazePosition@{ModifyMazePosition}}
+\index{ModifyMazePosition@{ModifyMazePosition}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{ModifyMazePosition()}{ModifyMazePosition()}}
+{\footnotesize\ttfamily void Maze\+::\+Modify\+Maze\+Position (\begin{DoxyParamCaption}\item[{const int \&}]{x,  }\item[{const int \&}]{y,  }\item[{const char \&}]{c }\end{DoxyParamCaption})}
+
+
+
+Modifies the char value stored to given char value c in maze at given coordinate (x,y) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & -\/ x coordinate of node \\
+\hline
+{\em y} & -\/ y coordinate of node \\
+\hline
+{\em c} & -\/ the char value user wish to modified to \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 54 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a17057893cca3bd647794171bd7bfb577}\label{class_maze_a17057893cca3bd647794171bd7bfb577}} 
+\index{Maze@{Maze}!North@{North}}
+\index{North@{North}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{North()}{North()}}
+{\footnotesize\ttfamily std\+::pair$<$ int, int $>$ Maze\+::\+North (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ int, int $>$ \&}]{node }\end{DoxyParamCaption}) const}
+
+
+
+Get next node location given current node location when going up. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & -\/ coordinate of current node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+next node location 
+\end{DoxyReturn}
+
+
+Definition at line 95 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_aa5b63e5c120410dda38853a443022b52}\label{class_maze_aa5b63e5c120410dda38853a443022b52}} 
+\index{Maze@{Maze}!PlotTrajectory@{PlotTrajectory}}
+\index{PlotTrajectory@{PlotTrajectory}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{PlotTrajectory()}{PlotTrajectory()}}
+{\footnotesize\ttfamily int Maze\+::\+Plot\+Trajectory (\begin{DoxyParamCaption}\item[{const char \&}]{path\+\_\+icon }\end{DoxyParamCaption})}
+
+
+
+Plots the path yield by the A$\ast$ algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+icon} & -\/ -\/ or + for tracked or wheeled robots \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 281 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_abc9edd3ac225e6cdb3114d903a2de70c}\label{class_maze_abc9edd3ac225e6cdb3114d903a2de70c}} 
+\index{Maze@{Maze}!SetStartGoal@{SetStartGoal}}
+\index{SetStartGoal@{SetStartGoal}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{SetStartGoal()}{SetStartGoal()}}
+{\footnotesize\ttfamily void Maze\+::\+Set\+Start\+Goal (\begin{DoxyParamCaption}\item[{const int \&}]{start\+\_\+x,  }\item[{const int \&}]{start\+\_\+y,  }\item[{const int \&}]{goal\+\_\+x,  }\item[{const int \&}]{goal\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Sets the start and goal locations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+x} & -\/ x coordinate of start node \\
+\hline
+{\em start\+\_\+y} & -\/ y coordinate of start node \\
+\hline
+{\em goal\+\_\+x} & -\/ x coordinate of goal node \\
+\hline
+{\em goal\+\_\+y} & -\/ y coordinate of goal node \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a46058cfa97b0d34fd45ff3d4508731bf}\label{class_maze_a46058cfa97b0d34fd45ff3d4508731bf}} 
+\index{Maze@{Maze}!South@{South}}
+\index{South@{South}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{South()}{South()}}
+{\footnotesize\ttfamily std\+::pair$<$ int, int $>$ Maze\+::\+South (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ int, int $>$ \&}]{node }\end{DoxyParamCaption}) const}
+
+
+
+Get next node location given current node location when going down. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & -\/ coordinate of current node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+next node location 
+\end{DoxyReturn}
+
+
+Definition at line 107 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a15993fbcbcdb98d56a80d58339aae2a2}\label{class_maze_a15993fbcbcdb98d56a80d58339aae2a2}} 
+\index{Maze@{Maze}!TakeDecision1@{TakeDecision1}}
+\index{TakeDecision1@{TakeDecision1}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{TakeDecision1()}{TakeDecision1()}}
+{\footnotesize\ttfamily const int Maze\+::\+Take\+Decision1 (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ int, int $>$ \&}]{new\+\_\+node,  }\item[{const double \&}]{cost\+\_\+g,  }\item[{\mbox{\hyperlink{struct_list_info}{List\+Info}} \&}]{info,  }\item[{const std\+::pair$<$ int, int $>$ \&}]{parent\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+When the A$\ast$ algorithm begins for the first time, there is no possibility that any of the generated nodes (four nodes from North, East, West and South movements) will be present in the closed\+\_\+list\+\_\+ or the priority\+\_\+list\+\_\+. Hence if the new nodes are valid nodes (they do not fall in obstacle space and they are within the scope of the environment, we just add them to the priority\+\_\+list\+\_\+. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+node} & -\/ coordinate of new node \\
+\hline
+{\em cost\+\_\+g} & -\/ cost to go so far \\
+\hline
+{\em \mbox{\hyperlink{struct_list_info}{List\+Info}}} & -\/ information on current node including cost to go, distance to target, current node location and parent node location \\
+\hline
+{\em parent\+\_\+node} & -\/ coordinate of parent node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the move is better and -\/1 if else 
+\end{DoxyReturn}
+
+
+Definition at line 129 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a078079ce7e963896360b22651206e13f}\label{class_maze_a078079ce7e963896360b22651206e13f}} 
+\index{Maze@{Maze}!TakeDecision2@{TakeDecision2}}
+\index{TakeDecision2@{TakeDecision2}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{TakeDecision2()}{TakeDecision2()}}
+{\footnotesize\ttfamily const int Maze\+::\+Take\+Decision2 (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ int, int $>$ \&}]{new\+\_\+node,  }\item[{const double \&}]{cost\+\_\+g,  }\item[{\mbox{\hyperlink{struct_list_info}{List\+Info}} \&}]{info,  }\item[{const std\+::pair$<$ int, int $>$ \&}]{parent\+\_\+node }\end{DoxyParamCaption})}
+
+
+
+When the A$\ast$ algorithm goes beyond the first generation of nodes, there are already some nodes which have been added to the priority\+\_\+list\+\_\+ and the closed\+\_\+list\+\_\+. Hence, for all new to-\/be-\/generated nodes, we have to do a variety of checks which include the following \+: 
+
+
+\begin{DoxyItemize}
+\item The newly generated node is not present in the closed\+\_\+list\+\_\+;
+\item The newly generated node is not in obstacle space;
+\item The newly generated node is not outside the region of the maze;
+\item The newly generated node is not already present in the priority\+\_\+list\+\_\+. If it is already present, then its cost g, cost h and cost f should be lesser than the currently generated node. If not, then all its information (cost g, cost h, cost f and parent node) must be reassigned with the information from the currently generated node 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+node} & -\/ coordinate of new node \\
+\hline
+{\em cost\+\_\+g} & -\/ cost to go so far \\
+\hline
+{\em \mbox{\hyperlink{struct_list_info}{List\+Info}}} & -\/ information on current node including cost to go, distance to target, current node location and parent node location \\
+\hline
+{\em parent\+\_\+node} & -\/ coordinate of parent node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the move is better and -\/1 if else 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 150 of file Maze.\+cpp.
+
+\mbox{\Hypertarget{class_maze_a4c45ee7fc87f1c72bb8893106dbb0630}\label{class_maze_a4c45ee7fc87f1c72bb8893106dbb0630}} 
+\index{Maze@{Maze}!West@{West}}
+\index{West@{West}!Maze@{Maze}}
+\subsubsection{\texorpdfstring{West()}{West()}}
+{\footnotesize\ttfamily std\+::pair$<$ int, int $>$ Maze\+::\+West (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ int, int $>$ \&}]{node }\end{DoxyParamCaption}) const}
+
+
+
+Get next node location given current node location when going left. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & -\/ coordinate of current node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+next node location 
+\end{DoxyReturn}
+
+
+Definition at line 103 of file Maze.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_maze_8h}{Maze.\+h}}\item 
+app/Maze.\+cpp\end{DoxyCompactItemize}
