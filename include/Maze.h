@@ -7,25 +7,8 @@
  * \date       04/27/2019
  * \brief      The file Maze.h contains the header declarations for Maze
  *             class. The class will be used for implementation of A-Star
- *             Algorithm in Final Project
- * \license    MIT License
- *             Permission is hereby granted, free of charge, to any person obtaining a copy
- *             of this software and associated documentation files (the "Software"), to deal
- *             in the Software without restriction, including without limitation the rights
- *             to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- *             copies of the Software, and to permit persons to whom the Software is
- *             furnished to do so, subject to the following conditions:
- *
- *             The above copyright notice and this permission notice shall be included in all
- *             copies or substantial portions of the Software.
- *
- *             THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *             IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- *             FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
- *             AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- *             LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- *             OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- *             SOFTWARE.
+ *             Algorithm in Final Project.
+ * \license    This project is released under the MIT License.
  */
 
 #ifndef ENPM809Y_PROJECT_5_A_STAR_H
@@ -40,6 +23,7 @@
 #include "MobileRobot.h"
 
 /*!
+ * \struct ListInfo
  * \brief  Define data structure that contain information for each nodes
  * such as cost to go, distance to target, current node location and parent
  * node location
@@ -53,6 +37,7 @@ struct ListInfo {
 };
 
 /*!
+ * \class Maze
  * \brief The Maze class contains the search based A* navigation algorithm
  * for solving our path finding problem. The algorithm accepts a start position
  * and goal position and finds a shortest path. The complexity of our algorithm
@@ -185,7 +170,7 @@ public:
      * some nodes which have been added to the priority_list_ and the closed_list_. Hence, for
      * all new to-be-generated nodes, we have to do a variety of checks which include the following :
      *    - The newly generated node is not present in the closed_list_;
-     *    - The newly generated node is not in obstacle space3;
+     *    - The newly generated node is not in obstacle space;
      *    - The newly generated node is not outside the region of the maze;
      *    - The newly generated node is not already present in the priority_list_. If it is
      *    already present, then its cost g, cost h and cost f should be lesser than the currently
@@ -195,7 +180,7 @@ public:
      * \param cost_g - cost to go so far
      * \param ListInfo - information on current node including cost to go, distance
      * to target, current node location and parent node location
-     * \parent_node - coordinate of parent node
+     * \param parent_node - coordinate of parent node
      * \return 1 if the move is better and -1 if else
      * */
     const int TakeDecision2(const std::pair<int, int> &new_node, const double &cost_g,
