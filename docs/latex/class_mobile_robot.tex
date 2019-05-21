@@ -1,0 +1,109 @@
+\hypertarget{class_mobile_robot}{}\section{Mobile\+Robot Class Reference}
+\label{class_mobile_robot}\index{MobileRobot@{MobileRobot}}
+
+
+The \mbox{\hyperlink{class_mobile_robot}{Mobile\+Robot}} class is the base class for \mbox{\hyperlink{class_wheeled_robot}{Wheeled\+Robot}} class and \mbox{\hyperlink{class_tracked_robot}{Tracked\+Robot}}.  
+
+
+
+
+{\ttfamily \#include $<$Mobile\+Robot.\+h$>$}
+
+Inheritance diagram for Mobile\+Robot\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mobile_robot}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_mobile_robot_a90040b7761ebf4405613f951b14d1a46}\label{class_mobile_robot_a90040b7761ebf4405613f951b14d1a46}} 
+\mbox{\hyperlink{class_mobile_robot_a90040b7761ebf4405613f951b14d1a46}{Mobile\+Robot}} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_mobile_robot_ac093af8693f0a7497daa4679a083a526}{Mobile\+Robot}} (std\+::string Robot\+Name)
+\begin{DoxyCompactList}\small\item\em Constructor with string input for the name member. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_mobile_robot_a5729510f8446736a4acdaf4de843ea5c}\label{class_mobile_robot_a5729510f8446736a4acdaf4de843ea5c}} 
+\mbox{\hyperlink{class_mobile_robot_a5729510f8446736a4acdaf4de843ea5c}{$\sim$\+Mobile\+Robot}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_mobile_robot_a703aa7c008b6e9b5beb5017e7a6d020e}{Handle\+Input}} (const std\+::string \&input)=0
+\begin{DoxyCompactList}\small\item\em Virtual function to handle input. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_mobile_robot_acc223c29386839a92fea5001943a0f9b}\label{class_mobile_robot_acc223c29386839a92fea5001943a0f9b}} 
+virtual void \mbox{\hyperlink{class_mobile_robot_acc223c29386839a92fea5001943a0f9b}{Show\+Stack}} ()=0
+\begin{DoxyCompactList}\small\item\em Virtual function to print the stack. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_mobile_robot_abb0ed1639db7efeb1b047a07826dfdc0}{get\+\_\+name}} ()
+\begin{DoxyCompactList}\small\item\em Function to get name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \mbox{\hyperlink{class_mobile_robot}{Mobile\+Robot}} class is the base class for \mbox{\hyperlink{class_wheeled_robot}{Wheeled\+Robot}} class and \mbox{\hyperlink{class_tracked_robot}{Tracked\+Robot}}. 
+
+Definition at line 27 of file Mobile\+Robot.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mobile_robot_ac093af8693f0a7497daa4679a083a526}\label{class_mobile_robot_ac093af8693f0a7497daa4679a083a526}} 
+\index{MobileRobot@{MobileRobot}!MobileRobot@{MobileRobot}}
+\index{MobileRobot@{MobileRobot}!MobileRobot@{MobileRobot}}
+\subsubsection{\texorpdfstring{MobileRobot()}{MobileRobot()}}
+{\footnotesize\ttfamily Mobile\+Robot\+::\+Mobile\+Robot (\begin{DoxyParamCaption}\item[{std\+::string}]{Robot\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor with string input for the name member. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Robot\+Name} & -\/ name of the robot. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 44 of file Mobile\+Robot\+\_\+\+F\+S\+M.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mobile_robot_abb0ed1639db7efeb1b047a07826dfdc0}\label{class_mobile_robot_abb0ed1639db7efeb1b047a07826dfdc0}} 
+\index{MobileRobot@{MobileRobot}!get\_name@{get\_name}}
+\index{get\_name@{get\_name}!MobileRobot@{MobileRobot}}
+\subsubsection{\texorpdfstring{get\_name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string Mobile\+Robot\+::get\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to get name. 
+
+\begin{DoxyReturn}{Returns}
+name of the robot 
+\end{DoxyReturn}
+
+
+Definition at line 86 of file Mobile\+Robot\+\_\+\+F\+S\+M.\+cpp.
+
+\mbox{\Hypertarget{class_mobile_robot_a703aa7c008b6e9b5beb5017e7a6d020e}\label{class_mobile_robot_a703aa7c008b6e9b5beb5017e7a6d020e}} 
+\index{MobileRobot@{MobileRobot}!HandleInput@{HandleInput}}
+\index{HandleInput@{HandleInput}!MobileRobot@{MobileRobot}}
+\subsubsection{\texorpdfstring{HandleInput()}{HandleInput()}}
+{\footnotesize\ttfamily virtual void Mobile\+Robot\+::\+Handle\+Input (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Virtual function to handle input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & -\/ input robot state. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_tracked_robot_a3522a61808d4bb1eb1779c9b8589b8f0}{Tracked\+Robot}}, and \mbox{\hyperlink{class_wheeled_robot_a481731d5b59ed97b432aac14de6036fd}{Wheeled\+Robot}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_mobile_robot_8h}{Mobile\+Robot.\+h}}\item 
+app/Mobile\+Robot\+\_\+\+F\+S\+M.\+cpp\end{DoxyCompactItemize}

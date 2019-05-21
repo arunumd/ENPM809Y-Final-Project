@@ -1,0 +1,40 @@
+\hypertarget{_target_8h}{}\section{include/\+Target.h File Reference}
+\label{_target_8h}\index{include/Target.h@{include/Target.h}}
+
+
+The file \mbox{\hyperlink{_target_8h}{Target.\+h}} contains the header declarations for \mbox{\hyperlink{class_target}{Target}} class. The class will be used for implementation of user interface, visualization etc in Final Project. \textbackslash{}license This project is released under the M\+IT License.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include \char`\"{}Maze.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Mobile\+Robot.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Wheeled\+Robot.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Tracked\+Robot.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_location}{Location}}
+\begin{DoxyCompactList}\small\item\em Define data structure that contain location (cartesian coordinates) for robot and target locations. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_target}{Target}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_target}{Target}} class has composition of all other classes for triggering the whole project. Specifically, it creates two copies of the \mbox{\hyperlink{class_maze}{Maze}} class, for the two robots (Wheeled and Tracked). It then takes in user input for locations of robots and targets. Later it triggers the A$\ast$ algorithm from the \mbox{\hyperlink{class_maze}{Maze}} class to find out the optimal paths (if they exist). If there are zero paths found, then \mbox{\hyperlink{class_target}{Target}} class will ask for fresh user inputs for alternate locations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The file \mbox{\hyperlink{_target_8h}{Target.\+h}} contains the header declarations for \mbox{\hyperlink{class_target}{Target}} class. The class will be used for implementation of user interface, visualization etc in Final Project. \textbackslash{}license This project is released under the M\+IT License. 
+
+\begin{DoxyAuthor}{Author}
+Arun Kumar Devarajulu 
+
+Zuyang Cao 
+
+Qidi Xu 
+
+Hongyang Jiang 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05/07/2019 
+\end{DoxyDate}

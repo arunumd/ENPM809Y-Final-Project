@@ -1,0 +1,70 @@
+\hypertarget{class_tracked_robot}{}\section{Tracked\+Robot Class Reference}
+\label{class_tracked_robot}\index{TrackedRobot@{TrackedRobot}}
+
+
+The \mbox{\hyperlink{class_tracked_robot}{Tracked\+Robot}} class handles state inputs and stores state stack for the pushdown automata.  
+
+
+
+
+{\ttfamily \#include $<$Tracked\+Robot.\+h$>$}
+
+Inheritance diagram for Tracked\+Robot\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tracked_robot}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_tracked_robot_a1ab6c59177c5b8597e4be2c948970546}\label{class_tracked_robot_a1ab6c59177c5b8597e4be2c948970546}} 
+\mbox{\hyperlink{class_tracked_robot_a1ab6c59177c5b8597e4be2c948970546}{Tracked\+Robot}} ()
+\begin{DoxyCompactList}\small\item\em Constructor to initialize the name as \char`\"{}\+Tracked Robot\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_tracked_robot_a99a8cc124539610c76a4362617fd7cee}\label{class_tracked_robot_a99a8cc124539610c76a4362617fd7cee}} 
+\mbox{\hyperlink{class_tracked_robot_a99a8cc124539610c76a4362617fd7cee}{$\sim$\+Tracked\+Robot}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tracked_robot_a3522a61808d4bb1eb1779c9b8589b8f0}{Handle\+Input}} (const std\+::string \&input) override
+\begin{DoxyCompactList}\small\item\em Virtual function to handle input. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_tracked_robot_a71b851eb983c8c2b607fad7a12ae02b8}\label{class_tracked_robot_a71b851eb983c8c2b607fad7a12ae02b8}} 
+void \mbox{\hyperlink{class_tracked_robot_a71b851eb983c8c2b607fad7a12ae02b8}{Show\+Stack}} () override
+\begin{DoxyCompactList}\small\item\em Function to print the stack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \mbox{\hyperlink{class_tracked_robot}{Tracked\+Robot}} class handles state inputs and stores state stack for the pushdown automata. 
+
+Definition at line 28 of file Tracked\+Robot.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_tracked_robot_a3522a61808d4bb1eb1779c9b8589b8f0}\label{class_tracked_robot_a3522a61808d4bb1eb1779c9b8589b8f0}} 
+\index{TrackedRobot@{TrackedRobot}!HandleInput@{HandleInput}}
+\index{HandleInput@{HandleInput}!TrackedRobot@{TrackedRobot}}
+\subsubsection{\texorpdfstring{HandleInput()}{HandleInput()}}
+{\footnotesize\ttfamily void Tracked\+Robot\+::\+Handle\+Input (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Virtual function to handle input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & -\/ input robot state. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_mobile_robot_a703aa7c008b6e9b5beb5017e7a6d020e}{Mobile\+Robot}}.
+
+
+
+Definition at line 58 of file Mobile\+Robot\+\_\+\+F\+S\+M.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_tracked_robot_8h}{Tracked\+Robot.\+h}}\item 
+app/Mobile\+Robot\+\_\+\+F\+S\+M.\+cpp\end{DoxyCompactItemize}
