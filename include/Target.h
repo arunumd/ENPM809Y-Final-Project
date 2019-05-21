@@ -1,14 +1,14 @@
-/*
- * @file        Target.h
- * @author      Arun Kumar Devarajulu
- * @author      Zuyang Cao
- * @author      Qidi Xu
- * @author      Hongyang Jiang
- * @date        05/07/2019
- * @brief       The file Target.h contains the header declarations for Target
+/*!
+ * \file        Target.h
+ * \author      Arun Kumar Devarajulu
+ * \author      Zuyang Cao
+ * \author      Qidi Xu
+ * \author      Hongyang Jiang
+ * \date        05/07/2019
+ * \brief       The file Target.h contains the header declarations for Target
  *              class. The class will be used for implementation of user interface,
  *              visualization etc in Final Project
- * @license     MIT License
+ * \license     MIT License
  *              Permission is hereby granted, free of charge, to any person obtaining a copy
  *              of this software and associated documentation files (the "Software"), to deal
  *              in the Software without restriction, including without limitation the rights
@@ -41,8 +41,8 @@
 #include "WheeledRobot.h"
 #include "TrackedRobot.h"
 
-/*
- *@brief Define data structure that contain location (cartesian coordinates)
+/*!
+ *\brief Define data structure that contain location (cartesian coordinates)
  *for robot and target locations
  * */
 struct Location {
@@ -52,48 +52,48 @@ struct Location {
 
 class Target {
 public:
-    /* @brief  Define default constructor */
+    /*! \brief  Define default constructor */
     Target() = default;
 
-    /* @brief  Define default destructor */
+    /*! \brief  Define default destructor */
     ~Target() = default;
 
-    /*
-     * @brief Asks user for tracked, wheeled robot starting point
+    /*!
+     * \brief Asks user for tracked, wheeled robot starting point
      * and plate, bottle goal point. Input check will be conducted
      * to see if the given node is out of maze or blocked
      * */
     void SetPositions();
 
-    /*
-     * @brief Assign task for tracked and wheeled robot to pick up
+    /*!
+     * \brief Assign task for tracked and wheeled robot to pick up
      * plant and bottle
      * */
     void AssignTasks();
 
-    /* @brief Initiates A* algorithm for wheeled robot and show the result */
+    /*! \brief Initiates A* algorithm for wheeled robot and show the result */
     int GoWheeled();
 
-    /* @brief Initiates A* algorithm for wheeled robot and show the result */
+    /*! \brief Initiates A* algorithm for wheeled robot and show the result */
     int GoTracked();
 
-    /* @brief Plot maze with two paths found */
+    /*! \brief Plot maze with two paths found */
     void PlotMaze();
 
-    /* @brief Helper function to assign target locations and robot locations */
+    /*! \brief Helper function to assign target locations and robot locations */
     void AssignLocations(std::array<Location *, 4> &, const int &, const int &, const int &);
 
 private:
-    /* @brief Creates object wheeled for Location class */
+    /*! \brief Creates object wheeled for Location class */
     Location wheeled_;
 
-    /* @brief Creates object tracked for Location class */
+    /*! \brief Creates object tracked for Location class */
     Location tracked_;
 
-    /* @brief Creates object plate for Location class */
+    /*! \brief Creates object plate for Location class */
     Location plate_;
 
-    /* @brief Creates object bottle for Location class */
+    /*! \brief Creates object bottle for Location class */
     Location bottle_;
 
     /* Initialize a temporary maze*/

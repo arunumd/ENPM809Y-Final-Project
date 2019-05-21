@@ -1,14 +1,14 @@
-/*
- * @file        MobileRobot.h
- * @author      Arun Kumar Devarajulu
- * @author      Zuyang Cao
- * @author      Qidi Xu
- * @author      Hongyang Jiang
- * @date        05/10/2019
- * @brief       The file MobileRobot.h contains the header declarations for MobileRobot
+/*!
+ * \file        MobileRobot.h
+ * \author      Arun Kumar Devarajulu
+ * \author      Zuyang Cao
+ * \author      Qidi Xu
+ * \author      Hongyang Jiang
+ * \date        05/10/2019
+ * \brief       The file MobileRobot.h contains the header declarations for MobileRobot
  *              class. The class will be used for implementation of finite state machine
  *              in Final Project
- * @license     MIT License
+ * \license     MIT License
  *              Permission is hereby granted, free of charge, to any person obtaining a copy
  *              of this software and associated documentation files (the "Software"), to deal
  *              in the Software without restriction, including without limitation the rights
@@ -36,39 +36,39 @@
 #include <string>
 #include "RobotState.h"
 
-/*
- * @brief The MobileRobot class is the base class for WheeledRobot class and
+/*!
+ * \brief The MobileRobot class is the base class for WheeledRobot class and
  * TrackedRobot.
  */
 class MobileRobot {
 public:
-    /* @brief Default constructor */
+    /*! \brief Default constructor */
     MobileRobot() = default;
 
-    /* @brief Constructor with string input for the name member.
-     * @param RobotName - name of the robot.
+    /*! \brief Constructor with string input for the name member.
+     * \param RobotName - name of the robot.
      */
     explicit MobileRobot(std::string RobotName);
 
-    /* @brief Default destructor.*/
+    /*! \brief Default destructor.*/
     ~MobileRobot() = default;
 
-    /* @brief Virtual function to handle input.
-     * @param input - input robot state.
+    /*! \brief Virtual function to handle input.
+     * \param input - input robot state.
      */
     virtual void HandleInput(const std::string &input) = 0;
 
-    /* @brief Virtual function to print the stack.*/
+    /*! \brief Virtual function to print the stack.*/
     virtual void ShowStack() = 0;
 
-    /*
-     * @brief Function to get name.
-     * @return name of the robot
+    /*!
+     * \brief Function to get name.
+     * \return name of the robot
      * */
     std::string get_name();
 
 private:
-    /* @brief Name member for the robot.*/
+    /*! \brief Name member for the robot.*/
     std::string name_;
 };
 

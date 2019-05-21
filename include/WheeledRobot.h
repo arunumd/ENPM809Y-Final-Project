@@ -1,4 +1,4 @@
-/*
+/*!
  * @file        WheeledRobot.h
  * @author      Arun Kumar Devarajulu
  * @author      Zuyang Cao
@@ -37,29 +37,29 @@
 #include "MobileRobot.h"
 #include "RobotState.h"
 
-/*
+/*!
  * @brief The WheeledRobot class handles state inputs and stores state stack 
  * for the pushdown automata.
  * */
 class WheeledRobot : public MobileRobot {
 public:
-    /* @brief Constructor to initialize the name as "Wheeled Robot". */
+    /*! @brief Constructor to initialize the name as "Wheeled Robot". */
     WheeledRobot() : MobileRobot("Wheeled Robot") {};
 
-    /* @brief Default destructor*/
+    /*! @brief Default destructor*/
     ~WheeledRobot() = default;
 
-    /*
+    /*!
      * @brief Virtual function to handle input.
      * @param input - input robot state.
      * */
     void HandleInput(const std::string &input) override;
 
-    /* @brief Function to print the stack.*/
+    /*! @brief Function to print the stack.*/
     void ShowStack() override;
 
 private:
-    /*
+    /*!
      * @brief Stack to store robot states for the
      * pushdown automata.
      * */
